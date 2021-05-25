@@ -9,6 +9,8 @@
 
 # Java class files
 *.class
+.idea
+node_modules
 
 # Generated files
 bin/
