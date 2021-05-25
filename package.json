@@ -5,6 +5,7 @@
   "author": "Joshua DeFord <joshdeford@onprem.com>",
   "license": "MIT",
   "description": "Example base for typescript projects",
+  "type": "module",
   "scripts": {
     "compile": "tsc",
     "build": "npm run compile && webpack",

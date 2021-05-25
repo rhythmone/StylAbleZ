@@ -21,6 +21,8 @@ out/
 .gradle/
 build/
 dist/
+node_modules/
+.idea/
 
 # Local configuration file (sdk path, etc)
 local.properties
