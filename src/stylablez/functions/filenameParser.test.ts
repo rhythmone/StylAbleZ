@@ -46,6 +46,13 @@ test('A filename with an unrecognized token throws an error', () => {
   }).toThrowErrorMatchingSnapshot();
 })
 
+test('A filename with an unparseable token throws an error', () => {
+  const fileName = `099_eyes-brown_d9012_VIF_CLA_XLDC`
+  expect(() => {
+    const styles = parseStylablezFilename(fileName)
+  }).toThrowErrorMatchingSnapshot();
+})
+
 test('A filename with an incorrect boolean value throws an error', () => {
   const fileName = `099_eyes-brown_UR12_VIY_CLA_BLDC`
   expect(() => {

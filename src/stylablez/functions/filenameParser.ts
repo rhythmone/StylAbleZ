@@ -23,14 +23,14 @@ const booleanTokenMap: {[key: string]: string} = {
     'MA': 'mask',
 }
 
+const colorTokenMap: {[key: string]: string} = {
+    'CL': 'backgroundColor',
+}
+
 const colorVariantMap: {[key: string]: string} = {
     'A': 'accent',
     'P': 'primary',
     'S': 'secondary',
-}
-
-const colorTokenMap: {[key: string]: string} = {
-    'CL': 'backgroundColor',
 }
 
 export const blendModeMap: {[key: string]: string} = {
@@ -76,6 +76,17 @@ export const parseStylablezFiles = (filenames: string[]): StylableZ[] => {
     return stylables.map(s => s.styleMap);
 }
 
+function throwFullError(fileName: string, token: string) {
+    let message = `The part of the filename: '${fileName}' containing ${token} didn't look like anything that matched codes for the default style names.\n\n`
+    message += `Valid codes with numeric values following them are: ${JSON.stringify(effectTokenMap, null, 2)}\n\n`
+    message += `Valid codes with T or F following them are: ${JSON.stringify(booleanTokenMap, null, 2)}\n\n`
+    message += `Valid codes with palette color (A, P or S) following them are: ${JSON.stringify(colorTokenMap, null, 2)}\n\n`
+    message += `Valid codes with a blend following them are: ${JSON.stringify(blendModeTokenMap, null, 2)}\n\n`
+    message += `Valid blend modes are: ${JSON.stringify(blendModeMap, null, 2)}\n\n`
+    message += `Consult the documentation to determine which combinations of letters and numbers are valid in the filename.`
+    throw Error(message)
+}
+
 const parseStylablezFilename = (fileName: string): Stylable => {
     let layerOrder
     const stripped = fileName.replace(/\s+/g, '')
@@ -99,19 +110,10 @@ const parseStylablezFilename = (fileName: string): Stylable => {
             } else if (colorTokenMap[tokenKey] !== undefined) {
                 addColorVariant(styleMap, fileName, token, tokenKey, tokenValue);
             } else {
-                throw Error(`The part of the filename: '${fileName}' containing ${token} isn't a valid code in the filename. '. 
-                It should be one of these: ${cleanTokens.join(", ")}.  Consult the documentation to
-                determine which combinations of letters and numbers are valid in the filename.`)
+                throwFullError(fileName, token);
             }
         } else {
-            let message = `The part of the filename: '${fileName}' containing ${token} didn't look like anything that matched codes for the default style names.\n\n`
-            message += `Valid codes with numeric values following them are: ${JSON.stringify(effectTokenMap, null, 2)}\n\n`
-            message += `Valid codes with T or F following them are: ${JSON.stringify(booleanTokenMap, null, 2)}\n\n`
-            message += `Valid codes with palette color (A, P or S) following them are: ${JSON.stringify(colorTokenMap, null, 2)}\n\n`
-            message += `Valid codes with a blend following them are: ${JSON.stringify(blendModeTokenMap, null, 2)}\n\n`
-            message += `Valid blend modes are: ${JSON.stringify(blendModeMap, null, 2)}\n\n`
-            message += `Consult the documentation to determine which combinations of letters and numbers are valid in the filename.`
-            throw Error(message)
+            throwFullError(fileName, token);
         }
     })
 
