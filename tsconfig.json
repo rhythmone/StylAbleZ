@@ -9,7 +9,8 @@
     "declaration": true,
     "esModuleInterop": true,
     "suppressImplicitAnyIndexErrors": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "noUnusedParameters": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist", "example"]

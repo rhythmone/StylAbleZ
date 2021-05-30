@@ -1,14 +1,13 @@
-import {Color, Layer, LayerStyle, Palette, StylablezWork} from "../model/types";
-import tym_transpData from '../data/palettes.json'
+import {Color, Layer, LayerStyle, Palette, PaletteList, StylablezWork} from "../model/types";
 import {loadLayerSourceImage} from "./layers";
 
-export const getPaletteNames = (): string[] => {
-    const names = tym_transpData.palettes.map(palette => palette.name);
+export const getPaletteNames = (paletteList: PaletteList): string[] => {
+    const names = paletteList.palettes.map(palette => palette.name);
     return names
 }
 
-export const tym_getPalette = (name: string): Palette => {
-    const palette =  tym_transpData.palettes.find(palette => palette.name === name);
+export const tym_getPalette = (paletteList: PaletteList, name: string): Palette => {
+    const palette =  paletteList.palettes.find(palette => palette.name === name);
     if (!palette) {
         throw new Error(`The palette: ${name} could not be found in the palette list.`)
     }
@@ -21,8 +20,8 @@ export interface VariantHex {
     accent: string
 }
 
-export const tym_getHexesForPalette = (currentPaletteName: string): VariantHex => {
-    const currentPalette = tym_getPalette(currentPaletteName);
+export const tym_getHexesForPalette = (paletteList: PaletteList, currentPaletteName: string): VariantHex => {
+    const currentPalette = tym_getPalette(paletteList, currentPaletteName);
     return {
         primary: currentPalette.colors[0].hex,
         secondary: currentPalette.colors[1].hex,
@@ -30,9 +29,9 @@ export const tym_getHexesForPalette = (currentPaletteName: string): VariantHex =
     }
 }
 
-export const tym_getHexForLabel = (label: string, currentPaletteName: string) => {
+export const tym_getHexForLabel = (paletteList: PaletteList, label: string, currentPaletteName: string) => {
     // var currentPaletteName = $('body').data('currentPaletteName');
-    var currentPalette = tym_getPalette(currentPaletteName);
+    var currentPalette = tym_getPalette(paletteList, currentPaletteName);
     if (label === 'prim') {
         return currentPalette.colors[0].hex;
     } else if (label === 'scnd') {
@@ -44,12 +43,12 @@ export const tym_getHexForLabel = (label: string, currentPaletteName: string) =>
     }
 }
 
-export const tym_getLabelForHex = (hex: string, currentPaletteName: string) => {
+export const tym_getLabelForHex = (paletteList: PaletteList, hex: string, currentPaletteName: string) => {
     if (hex.startsWith('rgb')) {
         // https://stackoverflow.com/a/33511903/223225
         hex = '#' + hex.substr(4, hex.indexOf(')') - 4).split(',').map((color) => parseInt(color).toString(16)).join('');
     }
-    var currentPalette = tym_getPalette(currentPaletteName);
+    var currentPalette = tym_getPalette(paletteList, currentPaletteName);
     var colorIndex = currentPalette.colors.findIndex((color: Color) => color.hex === hex);
     if (colorIndex === 0) {
         return 'prim';
@@ -64,7 +63,7 @@ export const tym_getLabelForHex = (hex: string, currentPaletteName: string) => {
 
 
 // This is where your constructor went
-export const extractLayerStyles = (asset: StylablezWork, layer: Layer,  width: number, height: number, paletteName: string) => {
+export const extractLayerStyles = (paletteList: PaletteList, asset: StylablezWork, layer: Layer,  width: number, height: number, paletteName: string) => {
     const image = loadLayerSourceImage(layer, asset);
 
     let layerStyle: LayerStyle = {
@@ -75,7 +74,7 @@ export const extractLayerStyles = (asset: StylablezWork, layer: Layer,  width: n
     }
 
     if (layer.backgroundColor && layer.backgroundColor !== 'transparent') {
-        layerStyle['background-color'] = tym_getHexForLabel(layer.backgroundColor, paletteName);
+        layerStyle['background-color'] = tym_getHexForLabel(paletteList, layer.backgroundColor, paletteName);
     }
     if (layer.brightness) {
         layerStyle.filter = `brightness(${layer.brightness}%)`;
