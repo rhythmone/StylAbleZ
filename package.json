@@ -4,7 +4,7 @@
   "author": "Joshua DeFord <joshdeford@onprem.com>",
   "license": "MIT",
   "description": "Example base for typescript projects",
-  "exports": "./index.ts",
+  "exports": "./src/ndex.ts",
   "babel": {
     "presets": [
       "@babel/preset-react"

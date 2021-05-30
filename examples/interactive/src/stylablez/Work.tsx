@@ -1,9 +1,7 @@
 import {Composite} from "./Composite";
-import {Gallery} from "../../stylablez/model/types";
 
 export interface WorkProps {
-    gallery: Gallery
-    ery,
+    gallery: Gallery,
     assetId: string;
     compId: string;
 }
