@@ -1,7 +1,7 @@
 {
-  "name": "hwrld",
+  "name": "stylazablez",
   "version": "2.1.1",
-  "description": "Can log \"hello world\" and \"goodbye world\" to the console!",
+  "description": "StylyzAbleZ",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
