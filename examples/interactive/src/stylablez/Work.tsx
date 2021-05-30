@@ -1,10 +1,6 @@
-// v1.0c - added comp fallback, if not found use index 0
-// v1.0b added an HTML flag for a global override
-// v1.0 7-31-20 validated against the "chpt8_wexIntro" test stack
-
 import {Gallery} from "./model/types";
 import {Composite} from "./Composite";
-import {loadCompositionElements} from "./functions/layers";
+import {loadCompositionElements} from 'Stylab'
 
 export interface WorkProps {
     gallery: Gallery,

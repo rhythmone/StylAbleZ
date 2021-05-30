@@ -2,9 +2,6 @@ import React, {useState} from 'react';
 
 import {Composition, StylablezWork} from "./model/types";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
-import {getPaletteNames} from "./functions/style";
-import {EditLayersPanel} from "./editor/EditLayersPanel";
-import {CompositionLayer} from "./CompositionLayer";
 
 interface CompositeProps {
     width: number;
@@ -34,24 +31,8 @@ export const Composite = (props: CompositeProps) => {
 
     return <div className={classes.compositeWrapper} style={{backgroundColor: backgroundColor}}>
         {
-            layers.map((layer, layerIndex) => {
-                if (onlyLayer < 0 || layerIndex === onlyLayer) {
-                    return <CompositionLayer
-                        key={layerIndex}
-                        asset={asset}
-                        layer={layer}
-                        width={width}
-                        height={height}
-                        paletteName={paletteName}/>
-                }
-            })
+            props.children
         }
-    <EditLayersPanel
-        layers={layers}
-        setBackground={setBackground}
-        paletteName={paletteName}
-        setPaletteName={setPaletteName}
-        setOnlyLayer={setOnlyLayer}/>
     </div>
 }
 
