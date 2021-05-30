@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "hwrld": "^2.1.1"
+    "stylazablez": "git+ssh://git@github.com:JoshuaEDeFord/StylAbleZ.git#create-module"
   },
   "devDependencies": {
     "ts-node": "^9.1.1",
