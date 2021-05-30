@@ -1,9 +1,9 @@
-import {Gallery} from "./model/types";
 import {Composite} from "./Composite";
-import {loadCompositionElements} from 'Stylab'
+import {Gallery} from "../../stylablez/model/types";
 
 export interface WorkProps {
-    gallery: Gallery,
+    gallery: Gallery
+    ery,
     assetId: string;
     compId: string;
 }
