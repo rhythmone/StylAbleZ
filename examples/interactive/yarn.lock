@@ -10512,7 +10512,7 @@ strip-json-comments@^3.1.0, strip-json-comments@^3.1.1:
 
 "stylablez@git+ssh://git@github.com:JoshuaEDeFord/StylAbleZ.git#add-examples":
   version "1.0.0"
-  resolved "git+ssh://git@github.com:JoshuaEDeFord/StylAbleZ.git#ffb2908146eb9456bc16724eea3b0dd6beea9310"
+  resolved "git+ssh://git@github.com:JoshuaEDeFord/StylAbleZ.git#635057357a9836362ceab0d26cb13b914719cbc1"
 
 style-loader@1.3.0:
   version "1.3.0"
