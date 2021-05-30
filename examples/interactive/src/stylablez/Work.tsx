@@ -1,5 +1,4 @@
 import {Composite} from "./Composite";
-import * from "stylablez"
 
 export interface WorkProps {
     gallery: Gallery,
