@@ -1,10 +1,8 @@
 {
-  "name": "@disney-dmg/harmony-ui-components",
+  "name": "stylablez",
   "version": "1.0.0",
-  "description": "Common components for harmony applications",
-  "author": "Joshua DeFord",
-  "license": "Disney All Rights Reserved",
-  "repository": "git+ssh://git@gitlab.disney.com:dmg/harmony/harmony-ui-components.git",
+  "description": "StylAbleZ Components",
+  "repository": "git+ssh://git@github.com:JoshuaEDeFord/StylAbleZ.git#add-examples",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "source": "src/index.tsx",
