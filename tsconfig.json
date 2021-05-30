@@ -1,17 +1,11 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
-    "module": "esnext",
-    "lib": ["dom", "esnext"],
-    "moduleResolution": "node",
-    "jsx": "react",
+    "target": "es5",
+    "module": "commonjs",
+    "outDir": "./build",
     "sourceMap": true,
-    "declaration": true,
+    "strict": false,
     "esModuleInterop": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "allowSyntheticDefaultImports": true,
-    "noUnusedParameters": true
-  },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist", "example"]
+    "declaration": true
+  }
 }
