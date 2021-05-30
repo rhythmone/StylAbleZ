@@ -2247,9 +2247,9 @@
   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
 
-"StylAbleZ@git+ssh://git@github.com:JoshuaEDeFord/StylAbleZ.git":
+"StylAbleZ@git+ssh://git@github.com:JoshuaEDeFord/StylAbleZ.git#add-examples":
   version "1.0.0"
-  resolved "git+ssh://git@github.com:JoshuaEDeFord/StylAbleZ.git#97b38aada7f12acbf7a016bde3b435f34b610245"
+  resolved "git+ssh://git@github.com:JoshuaEDeFord/StylAbleZ.git#a3e825f0d53f6ae2d36093ea247cc8351c9f967f"
 
 abab@^2.0.3:
   version "2.0.5"

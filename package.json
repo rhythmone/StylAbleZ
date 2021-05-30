@@ -1,10 +1,10 @@
 {
-  "name": "StylAbleZ",
+  "name": "stylablez",
   "version": "1.0.0",
-  "repository": "git@github.com:JoshuaEDeFord/StylAbleZ.git",
   "author": "Joshua DeFord <joshdeford@onprem.com>",
   "license": "MIT",
   "description": "Example base for typescript projects",
+  "exports": "./index.ts",
   "babel": {
     "presets": [
       "@babel/preset-react"

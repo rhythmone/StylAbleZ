@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
-import {Composition, StylablezWork} from "./model/types";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
+import {Composition} from "stylzablez";
 
 interface CompositeProps {
     width: number;
