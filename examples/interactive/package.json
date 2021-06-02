@@ -1,0 +1,72 @@
+{
+  "name": "stylables-three",
+  "version": "0.1.0",
+  "private": true,
+  "baseUrl": ".",
+  "outDir": "build/dist",
+  "module": "esnext",
+  "target": "es5",
+  "downlevelIteration": true,
+  "lib": ["es6", "es2015", "es2017", "dom"],
+  "sourceMap": true,
+  "allowJs": true,
+  "jsx": "react",
+  "moduleResolution": "node",
+  "rootDir": "src",
+  "forceConsistentCasingInFileNames": true,
+  "noImplicitReturns": true,
+  "noImplicitThis": true,
+  "noImplicitAny": true,
+  "importHelpers": true,
+  "strictNullChecks": true,
+  "suppressImplicitAnyIndexErrors": true,
+  "noUnusedLocals": true,
+  "skipLibCheck": true,
+  "dependencies": {
+    "@material-ui/core": "^4.11.4",
+    "@stylizablez/core": "file:../../core/dist",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.58",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^12.0.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "lodash": "^4.17.21",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "typescript": "^4.1.2",
+    "web-vitals": "^1.0.1",
+    "@types/webpack-env": "^1.16.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.169",
+    "@types/webpack-env": "^1.16.0"
+  }
+}
