@@ -1,0 +1,211 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`A filename with an incorrect blend mode throws an error 1`] = `
+"The part of the filename: '099_eyes-brown_UR12_VIF_CLA_BLXX' containing the blend mode code: 'BLXX'
+                    is followed by a value that isn't a code for a blend mode. 'XX' is not a blend mode. 
+                    The allowed codes for the blend modes are: 
+                    {
+  \\"NM\\": \\"normal\\",
+  \\"ML\\": \\"multiply\\",
+  \\"SC\\": \\"screen\\",
+  \\"OL\\": \\"overlay\\",
+  \\"DK\\": \\"darken\\",
+  \\"DC\\": \\"darker-color\\",
+  \\"LI\\": \\"lighten\\",
+  \\"CD\\": \\"color-dodge\\",
+  \\"CB\\": \\"color-burn\\",
+  \\"HL\\": \\"hard-light\\",
+  \\"SL\\": \\"soft-light\\",
+  \\"PL\\": \\"pin-light\\",
+  \\"DF\\": \\"difference\\",
+  \\"EX\\": \\"exclusion\\",
+  \\"HU\\": \\"hue\\"
+}"
+`;
+
+exports[`A filename with an incorrect boolean value throws an error 1`] = `
+"The part of the filename: '099_eyes-brown_UR12_VIY_CLA_BLDC' containing the code: 'VIY'
+                    is followed by a code that can't be converted to true of false.  It's 'Y'. 
+                    It must be either 'T' or 'F'"
+`;
+
+exports[`A filename with an incorrect numeric value throws an error 1`] = `
+"The part of the filename: '099_eyes-brown_UR1s_VIF_CLA_BLDC' containing the code: 'UR1S'
+                    is followed by a value: '1S' that can't be converted to a number.
+                    It must be a number"
+`;
+
+exports[`A filename with an unparseable token throws an error 1`] = `
+"If you don't need strict error checking, you can disable this message with the parameter: 'lenientFilenames' to most methods.
+
+The part of the filename: '099_eyes-brown_d9012_VIF_CLA_XLDC' containing D9012 didn't look like anything that matched codes for the default style names.
+
+Valid codes with numeric values following them are: {
+  \\"UR\\": \\"blur\\",
+  \\"BR\\": \\"brightness\\",
+  \\"CN\\": \\"contrast\\",
+  \\"GR\\": \\"grayscale\\",
+  \\"HU\\": \\"hueRotate\\",
+  \\"IN\\": \\"invert\\",
+  \\"OP\\": \\"opacity\\",
+  \\"SA\\": \\"saturate\\",
+  \\"SP\\": \\"sepia\\"
+}
+
+Valid codes with T or F following them are: {
+  \\"VI\\": \\"visible\\",
+  \\"MA\\": \\"mask\\"
+}
+
+Valid codes with palette color (A, P or S) following them are: {
+  \\"CL\\": \\"backgroundColor\\"
+}
+
+Valid codes with a blend following them are: {
+  \\"BL\\": \\"mixBlendMode\\",
+  \\"BB\\": \\"backgroundBlendMode\\"
+}
+
+Valid blend modes are: {
+  \\"NM\\": \\"normal\\",
+  \\"ML\\": \\"multiply\\",
+  \\"SC\\": \\"screen\\",
+  \\"OL\\": \\"overlay\\",
+  \\"DK\\": \\"darken\\",
+  \\"DC\\": \\"darker-color\\",
+  \\"LI\\": \\"lighten\\",
+  \\"CD\\": \\"color-dodge\\",
+  \\"CB\\": \\"color-burn\\",
+  \\"HL\\": \\"hard-light\\",
+  \\"SL\\": \\"soft-light\\",
+  \\"PL\\": \\"pin-light\\",
+  \\"DF\\": \\"difference\\",
+  \\"EX\\": \\"exclusion\\",
+  \\"HU\\": \\"hue\\"
+}
+
+Consult the documentation to determine which combinations of letters and numbers are valid in the filename."
+`;
+
+exports[`A filename with an unrecognized token throws an error 1`] = `
+"If you don't need strict error checking, you can disable this message with the parameter: 'lenientFilenames' to most methods.
+
+The part of the filename: '099_eyes-brown_UR12_VIF_CLA_XLDC' containing XLDC didn't look like anything that matched codes for the default style names.
+
+Valid codes with numeric values following them are: {
+  \\"UR\\": \\"blur\\",
+  \\"BR\\": \\"brightness\\",
+  \\"CN\\": \\"contrast\\",
+  \\"GR\\": \\"grayscale\\",
+  \\"HU\\": \\"hueRotate\\",
+  \\"IN\\": \\"invert\\",
+  \\"OP\\": \\"opacity\\",
+  \\"SA\\": \\"saturate\\",
+  \\"SP\\": \\"sepia\\"
+}
+
+Valid codes with T or F following them are: {
+  \\"VI\\": \\"visible\\",
+  \\"MA\\": \\"mask\\"
+}
+
+Valid codes with palette color (A, P or S) following them are: {
+  \\"CL\\": \\"backgroundColor\\"
+}
+
+Valid codes with a blend following them are: {
+  \\"BL\\": \\"mixBlendMode\\",
+  \\"BB\\": \\"backgroundBlendMode\\"
+}
+
+Valid blend modes are: {
+  \\"NM\\": \\"normal\\",
+  \\"ML\\": \\"multiply\\",
+  \\"SC\\": \\"screen\\",
+  \\"OL\\": \\"overlay\\",
+  \\"DK\\": \\"darken\\",
+  \\"DC\\": \\"darker-color\\",
+  \\"LI\\": \\"lighten\\",
+  \\"CD\\": \\"color-dodge\\",
+  \\"CB\\": \\"color-burn\\",
+  \\"HL\\": \\"hard-light\\",
+  \\"SL\\": \\"soft-light\\",
+  \\"PL\\": \\"pin-light\\",
+  \\"DF\\": \\"difference\\",
+  \\"EX\\": \\"exclusion\\",
+  \\"HU\\": \\"hue\\"
+}
+
+Consult the documentation to determine which combinations of letters and numbers are valid in the filename."
+`;
+
+exports[`A filename with one of each of the tokens is correctly parsed 1`] = `
+Object {
+  "layerOrder": 0,
+  "styleMap": Object {
+    "backgroundColor": "accent",
+    "blur": 12,
+    "mixBlendMode": "darker-color",
+    "visible": false,
+  },
+}
+`;
+
+exports[`A filename with one of each of the tokens is correctly parsed with no regard to casae 1`] = `
+Object {
+  "layerOrder": 0,
+  "styleMap": Object {
+    "backgroundColor": "accent",
+    "blur": 12,
+    "mixBlendMode": "darker-color",
+    "visible": false,
+  },
+}
+`;
+
+exports[`Many filenames are correctly ordered. 1`] = `
+Array [
+  Object {
+    "backgroundColor": "accent",
+    "blur": 99,
+    "mixBlendMode": "darker-color",
+    "visible": false,
+  },
+  Object {
+    "backgroundColor": "accent",
+    "blur": 10,
+    "mixBlendMode": "darker-color",
+    "visible": false,
+  },
+  Object {
+    "backgroundColor": "accent",
+    "blur": 12,
+    "mixBlendMode": "darker-color",
+    "visible": false,
+  },
+  Object {
+    "backgroundColor": "accent",
+    "blur": 2,
+    "mixBlendMode": "darker-color",
+    "visible": false,
+  },
+  Object {
+    "backgroundColor": "accent",
+    "blur": 30,
+    "mixBlendMode": "darker-color",
+    "visible": false,
+  },
+  Object {
+    "backgroundColor": "accent",
+    "blur": 100,
+    "mixBlendMode": "darker-color",
+    "visible": false,
+  },
+  Object {
+    "backgroundColor": "accent",
+    "blur": 909,
+    "mixBlendMode": "darker-color",
+    "visible": false,
+  },
+]
+`;

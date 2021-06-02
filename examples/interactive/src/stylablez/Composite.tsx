@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
-import {Composition} from "stylzablez";
+import { StylablezWork, Composition, getPaletteNames } from '@stylizablez/core'
+
 
 interface CompositeProps {
     width: number;

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Composition, StylablezWork} from "../model/types";
+import {Composition, StylablezWork} from "../../../../../src";
 
 interface  PreviewProps {
   asset: StylablezWork;

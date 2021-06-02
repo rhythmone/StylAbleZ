@@ -1,6 +1,5 @@
 import React from 'react';
 
-import {Layer} from "../model/types";
 import {Slider, Typography} from "@material-ui/core";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 
