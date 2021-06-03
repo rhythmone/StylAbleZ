@@ -127,11 +127,16 @@ function throwFullError(fileName: string, token: string) {
 const parseStylablezFilename = (fileName: string, lenientFilenames: boolean = false): Stylable => {
     let layerOrder
     const extensionIdx = fileName.lastIndexOf('.')
-    const strippedOfExtension = fileName.substring(0, extensionIdx)
+    let strippedOfExtension = fileName
+    if (extensionIdx >= 0) {
+        strippedOfExtension = fileName.substring(0, extensionIdx)
+    }
     const stripped = strippedOfExtension.replace(/\s+/g, '')
     const tokens = stripped.toUpperCase().split(tokenDelimiter)
     const styleMap: StylAbleZMap = {}
-    const cleanTokens = tokens.filter(token => token.indexOf('-') < 0)
+    const cleanTokens = tokens.filter(
+        token => token.indexOf('-') < 0
+    )
     cleanTokens.forEach((token) => {
         try {
             const digitsFound = token.match(digitsOnly)
