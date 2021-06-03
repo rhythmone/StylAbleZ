@@ -1,6 +1,7 @@
-rm -rf node_modules &
-pushd ../../core
+cd core
+yarn install
 yarn build
-popd
+cd ../examples/dnd
+rm -rf node_modules
 yarn install
 yarn start

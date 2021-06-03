@@ -1,4 +1,4 @@
-import React, {useCallback, useReducer, useState} from 'react';
+import React, {useCallback, useMemo, useReducer} from 'react';
 
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import {useDropzone} from "react-dropzone";
@@ -14,14 +14,48 @@ import {
 } from '@stylizablez/core'
 import {palettes} from "./Palettes";
 import {EditLayersPanel} from "./editor/EditLayersPanel";
+import splash from '../img/splash.png'
 
 export interface WorkProps {
 }
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
+        text: {
+            position: 'absolute',
+            left: 70
+        },
+        noDragActive: {
+            backgroundColor: 'green'
+        },
+        dragActive: {
+            border: '1px solid',
+            padding: '10',
+            boxShadow: '5px 10px #88888850',
+            borderRadius: 5,
+            borderColor: '#88888850'
+        },
+        img: {
+            width: 400,
+            height: 330,
+            top: 184,
+            left: 264,
+            position: 'absolute'
+        },
         dropZone: {
             height: 150,
             width: 245
+        },
+        wrapper: {
+            height: 500,
+            position: 'absolute',
+            top: 90,
+            bottom: 90,
+            left: 50,
+            width: 850,
+            borderRadius: 10,
+            borderColor: '#d6d4d4',
+            borderWidth: 10,
+            borderStyle: 'dashed',
         }
     })
 );
@@ -71,6 +105,7 @@ const initialState: CompositionState = {
 export const Work = (props: WorkProps)  => {
     const [state, dispatch] = useReducer(reducer, initialState);
     let backgroundColorValue = getHexForLabel(state.palette, state.backgroundColor);
+    const classes = useStyles();
 
     const onDrop = useCallback((acceptedFiles: File[]) => {
         const lenientFilenames = true
@@ -81,22 +116,47 @@ export const Work = (props: WorkProps)  => {
         })
     }, [])
 
-    const classes = useStyles();
-    const {getRootProps} = useDropzone({ noDragEventsBubbling: true, onDrop })
+    const {getRootProps,
+        isDragActive,
+        isDragAccept,
+        isDragReject} = useDropzone({
+        noDragEventsBubbling: true,
+        onDrop: onDrop,
+        accept: 'image/*'
+    })
+
+    const dragStyle = useMemo(() => {
+        if (isDragActive) {
+            return classes.dragActive
+        } else {
+            return classes.noDragActive
+        }
+    }, [
+        isDragActive,
+        isDragReject,
+        isDragAccept,
+        classes.dragActive,
+        classes.noDragActive
+    ]);
+
     const {ref, ...rootProps} = getRootProps()
 
     return (
         <RootRef rootRef={ref}>
-            <Paper {...rootProps}>
-                <p>Drag 'n' drop some files here, or click to select files</p>
-                <Composite
-                backgroundColor={backgroundColorValue}
-                layers={state.layers}
-                layerHeight={800}
-                layerWidth={800}
-                palette={state.palette}
-            />
+            <Paper {...rootProps} elevation={0}>
+                <p className={classes.text}>Drag 'n' drop some image files below</p>
+                {state.layers.length > 0 ? <Composite
+                    backgroundColor={backgroundColorValue}
+                    layers={state.layers}
+                    layerHeight={800}
+                    layerWidth={800}
+                    palette={state.palette}
+                />
+                : <img src={splash} className={`${classes.img} ${dragStyle}`} alt={""}/>
+                }
+            <div className={`${classes.wrapper}`}>
                 <EditLayersPanel compositionState={state} dispatch={dispatch}/>
+            </div>
             </Paper>
         </RootRef>
     )

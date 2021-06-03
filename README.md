@@ -2,14 +2,21 @@
 
 A library for processing a stack of images that can flex in both color and style according to the digital product they are embedded in.
 
+![Inclusive and stylish StylAbleZ logo](/image/splash.png "StylAbleZ")
+
 # Get Started
 
-> For a quick example run: [Core Library](core/README.md)
+> For a quick example run: [Core Library](core)
 > * git clone https://github.com/JoshuaEDeFord/StylAbleZ
 > * cd StylAbleZ
 > * `./quickstart.sh`
 
 # Usage
 
-> Core library usage see: [Core Library](core/README.md)
-> Example usage see: [Drag and Drop](dnd/README.md)
+> * Core library usage see: [Core Library](core/README.md)
+> * Example usage see: [Drag and Drop](dnd/README.md)
+>   * There are sample files in [Core Library](examples/sample_images)  you can drag into the example when it starts
+ 
+# API Docs
+> The quickstart script generates the docs here: [Core Library](core/build/docs/index.html)
+> See [Core Library](core) for documentation and details

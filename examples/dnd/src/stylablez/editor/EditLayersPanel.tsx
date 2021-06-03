@@ -4,7 +4,6 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import Loupe from '@material-ui/icons/LoupeSharp';
-import _ from 'lodash'
 import {
     Drawer,
     FormControl,
@@ -19,8 +18,6 @@ import {
 } from "@material-ui/core";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import {LayerEditor} from "./LayerEditor";
-import {getHexesForPalette, Palette, getPalette, getPaletteNames, Layer} from '@stylizablez/core'
-import {  palettes } from '../Palettes'
 import {CompositionState} from "../Work";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -136,10 +133,6 @@ export const EditLayersPanel = (props: LayerEditorProps) => {
                     })
                 }
             </List>
-            <p className="text-right">
-                <button className="btn btn-primary" id="export">Copy Composite Data to Clipboard
-                </button>
-            </p>
         </div>
         </Drawer>
     )
