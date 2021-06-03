@@ -5,9 +5,9 @@ export const sum = (a: number, b: number) => {
   return a + b;
 };
 
-export { loadCompositionElements, loadCompositionLayers, loadLayerSourceImage, buildStylizableLayers } from './stylablez/functions/layers'
-export * from './stylablez/functions/filenameParser'
-export * from './stylablez/functions/style'
-export * from './stylablez/model/types'
-export * from './stylablez/components/Composite'
-export * from './stylablez/components/CompositionLayer'
+export * from './styleablez/tools/FilenameParser'
+export * from './styleablez/tools/LayerTool'
+export * from './styleablez/tools/PaletteTool'
+export * from './styleablez/model/types'
+export * from './styleablez/components/Composite'
+export * from './styleablez/components/CompositionLayer'

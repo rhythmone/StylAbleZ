@@ -1,9 +1,9 @@
 import React, {useMemo} from "react";
 import {Layer, Palette} from "../model/types";
-import {extractLayerStyles} from "../functions/style";
+import {LayerTool} from "../tools/LayerTool";
 
 /**
- * Properties passed in with the #CompositeLayer element attribuutes.  The most important
+ * Properties passed in with the CompositeLayer visual element attributes.  The most important
  * attributes are layer and palette both of which can be controlled with React using controlled
  * components.  See the example in this repository to see how this is done.
  */
@@ -16,9 +16,9 @@ interface LayerProps {
 }
 
 /**
- * A CompositionLayer is an element whose styles are applied directly to the element
- * based on the values extracted from the @Layer using the #extractLayerStyles method.:w
- * @param props @see #LayerProps
+ * A React JSX element whose styles are applied directly to the element
+ * based on the values extracted from the @Layer using the extractLayerStyles method.
+ * @param props LayerProps
  * @constructor
  */
 export const CompositionLayer = (props: LayerProps) => {
@@ -26,7 +26,7 @@ export const CompositionLayer = (props: LayerProps) => {
 
     return useMemo(
     () => {
-        const layerStyle = extractLayerStyles(palette, layer, width, height);
+        const layerStyle = new LayerTool().extractLayerStyles(palette, layer, width, height);
 
         return <div style={{
             flex: '1 1 auto',

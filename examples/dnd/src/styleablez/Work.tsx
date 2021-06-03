@@ -3,18 +3,10 @@ import React, {useCallback, useMemo, useReducer} from 'react';
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import {useDropzone} from "react-dropzone";
 import {Paper, RootRef} from "@material-ui/core";
-import {
-    getPaletteNames,
-    Layer,
-    buildStylizableLayers,
-    Composite,
-    getPalette,
-    getHexForLabel,
-    Palette
-} from '@stylizablez/core'
 import {palettes} from "./Palettes";
 import {EditLayersPanel} from "./editor/EditLayersPanel";
 import splash from '../img/splash.png'
+import {Composite, Layer, LayerTool, Palette, PaletteTool} from "@styleablez/core";
 
 export interface WorkProps {
 }
@@ -70,13 +62,16 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
+const paletteTool = new PaletteTool();
+const layerTool = new LayerTool();
+
 const reducer = (state: CompositionState, action: any) => {
     switch (action.type) {
         case 'changeBackgroundColor':
             const newState = {...state, backgroundColor: action.backgroundColor};
             return newState
         case 'changePaletteName':
-            return {...state, palette: getPalette(palettes, action.paletteName)};
+            return {...state, palette: paletteTool.getPalette(palettes, action.paletteName)};
         case 'changeOpacity':
             // A copy must be made for the memoized react layer component to re-render
             const opacityLayer: Layer = {...state.layers[action.layerIndex]}
@@ -108,18 +103,18 @@ export interface CompositionState {
 const initialState: CompositionState = {
     backgroundColor: 'prim',
     palette: palettes.palettes[0],
-    paletteNames: getPaletteNames(palettes),
+    paletteNames: paletteTool.getPaletteNames(palettes),
     layers: []
 }
 
 export const Work = (props: WorkProps)  => {
     const [state, dispatch] = useReducer(reducer, initialState);
-    let backgroundColorValue = getHexForLabel(state.palette, state.backgroundColor);
+    let backgroundColorValue = paletteTool.getHexForLabel(state.palette, state.backgroundColor);
     const classes = useStyles();
 
     const onDrop = useCallback((acceptedFiles: File[]) => {
         const lenientFilenames = true
-        let StylizAbleZ = buildStylizableLayers(acceptedFiles, lenientFilenames);
+        let StylizAbleZ = layerTool.buildStylizableLayers(acceptedFiles, lenientFilenames);
         dispatch({
             type: 'changeLayers',
             layers: StylizAbleZ
@@ -128,9 +123,7 @@ export const Work = (props: WorkProps)  => {
 
     const {
         getRootProps,
-        isDragActive,
-        isDragAccept,
-        isDragReject
+        isDragActive
     } = useDropzone({
         noDragEventsBubbling: true,
         onDrop: onDrop,
@@ -145,8 +138,6 @@ export const Work = (props: WorkProps)  => {
         }
     }, [
         isDragActive,
-        isDragReject,
-        isDragAccept,
         classes.dragActive,
         classes.noDragActive
     ]);
