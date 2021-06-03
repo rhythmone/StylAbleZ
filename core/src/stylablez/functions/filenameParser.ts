@@ -164,9 +164,8 @@ const parseStylablezFilename = (fileName: string, lenientFilenames: boolean = fa
 
     if (layerOrder === undefined && !lenientFilenames) {
         throw Error(`The filename: '${fileName}' must begin with a number which indicates what order it should be inserted into the stack.`)
-    } else {
-        layerOrder = 0
     }
+   layerOrder = layerOrder || 0
 
     return {
         layerOrder,
