@@ -195,12 +195,13 @@ export const addBlendMode = (styleMap: StylAbleZMap, fileName: string, token: st
 }
 
 export const addBooleanValue = (styleMap: StylAbleZMap, fileName: string, token: string, tokenKey: string, tokenValue: string) => {
-    if (tokenValue !== 'T' && tokenValue !== 'F') {
+    if (tokenValue !== 'T' && tokenValue !== 'F' && tokenValue !== '0' && tokenValue !== '1') {
         throw Error(`The part of the filename: '${fileName}' containing the code: '${token}'
                     is followed by a code that can't be converted to true of false.  It's '${tokenValue}'. 
                     It must be either 'T' or 'F'`)
     }
-    styleMap[booleanTokenMap[tokenKey]] = tokenValue === 'T'
+
+    styleMap[booleanTokenMap[tokenKey]] = (tokenValue === 'T' || tokenValue === '1')
 }
 
 function addColorVariant(styleMap: StylAbleZMap, fileName: string, token: string, tokenKey: string, tokenValue: string) {
