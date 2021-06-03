@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: core.esm.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: core.esm.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useMemo } from 'react';
+
+var tokenDelimiter = '_';
+var effectTokenMap = {
+  'UR': 'blur',
+  'BR': 'brightness',
+  'CN': 'contrast',
+  'GR': 'grayscale',
+  'HU': 'hueRotate',
+  'IN': 'invert',
+  'OP': 'opacity',
+  'SA': 'saturate',
+  'SP': 'sepia'
+};
+var blendModeTokenMap = {
+  'BL': 'mixBlendMode',
+  'BB': 'backgroundBlendMode'
+};
+var booleanTokenMap = {
+  'VI': 'visible',
+  'MA': 'mask'
+};
+var colorTokenMap = {
+  'CL': 'backgroundColor'
+};
+var colorVariantMap = {
+  'A': 'accent',
+  'P': 'primary',
+  'S': 'secondary'
+};
+var blendModeMap = {
+  'NM': 'normal',
+  'ML': 'multiply',
+  'SC': 'screen',
+  'OL': 'overlay',
+  'DK': 'darken',
+  'DC': 'darker-color',
+  'LI': 'lighten',
+  'CD': 'color-dodge',
+  'CB': 'color-burn',
+  'HL': 'hard-light',
+  'SL': 'soft-light',
+  'PL': 'pin-light',
+  'DF': 'difference',
+  'EX': 'exclusion',
+  'HU': 'hue'
+};
+var digitsOnly = /(^[0-9]*$)/;
+var styleCode = /(^[A-Z|a-z]{2})(.*)/;
+var parseStylablezFiles = function parseStylablezFiles(filenames, lenientFilenames) {
+  if (lenientFilenames === void 0) {
+    lenientFilenames = false;
+  }
+
+  var stylables = filenames.map(function (filename) {
+    return parseStylablezFilename(filename, lenientFilenames);
+  });
+  stylables.sort(function (s1, s2) {
+    if (s1.layerOrder > s2.layerOrder) {
+      return 1;
+    } else if (s1.layerOrder &lt; s2.layerOrder) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
+  return stylables.map(function (s) {
+    return s.styleMap;
+  });
+};
+
+function throwFullError(fileName, token) {
+  var message = "If you don't need strict error checking, you can disable this message with the parameter: 'lenientFilenames' to most methods.\n\n";
+  message += "The part of the filename: '" + fileName + "' containing " + token + " didn't look like anything that matched codes for the default style names.\n\n";
+  message += "Valid codes with numeric values following them are: " + JSON.stringify(effectTokenMap, null, 2) + "\n\n";
+  message += "Valid codes with T or F following them are: " + JSON.stringify(booleanTokenMap, null, 2) + "\n\n";
+  message += "Valid codes with palette color (A, P or S) following them are: " + JSON.stringify(colorTokenMap, null, 2) + "\n\n";
+  message += "Valid codes with a blend following them are: " + JSON.stringify(blendModeTokenMap, null, 2) + "\n\n";
+  message += "Valid blend modes are: " + JSON.stringify(blendModeMap, null, 2) + "\n\n";
+  message += "Consult the documentation to determine which combinations of letters and numbers are valid in the filename.";
+  throw Error(message);
+}
+
+var parseStylablezFilename = function parseStylablezFilename(fileName, lenientFilenames) {
+  if (lenientFilenames === void 0) {
+    lenientFilenames = false;
+  }
+
+  var layerOrder;
+  var stripped = fileName.replace(/\s+/g, '');
+  var tokens = stripped.toUpperCase().split(tokenDelimiter);
+  var styleMap = {};
+  var cleanTokens = tokens.filter(function (token) {
+    return token.indexOf('-') &lt; 0;
+  });
+  cleanTokens.forEach(function (token) {
+    try {
+      var digitsFound = token.match(digitsOnly);
+      var styleCodeFound = token.match(styleCode);
+
+      if (digitsFound) {
+        layerOrder = Number.parseInt(digitsFound[1], 10);
+      } else if (styleCodeFound) {
+        var tokenKey = styleCodeFound[1];
+        var tokenValue = styleCodeFound[2];
+
+        if (effectTokenMap[tokenKey] !== undefined) {
+          addEffectValue(styleMap, fileName, token, tokenKey, tokenValue);
+        } else if (blendModeTokenMap[tokenKey] !== undefined) {
+          addBlendMode(styleMap, fileName, token, tokenKey, tokenValue);
+        } else if (booleanTokenMap[tokenKey] !== undefined) {
+          addBooleanValue(styleMap, fileName, token, tokenKey, tokenValue);
+        } else if (colorTokenMap[tokenKey] !== undefined) {
+          addColorVariant(styleMap, fileName, token, tokenKey, tokenValue);
+        } else {
+          throwFullError(fileName, token);
+        }
+      } else {
+        throwFullError(fileName, token);
+      }
+    } catch (e) {
+      if (!lenientFilenames) {
+        throw e;
+      }
+    }
+  });
+
+  if (layerOrder === undefined &amp;&amp; !lenientFilenames) {
+    throw Error("The filename: '" + fileName + "' must begin with a number which indicates what order it should be inserted into the stack.");
+  } else {
+    layerOrder = 0;
+  }
+
+  return {
+    layerOrder: layerOrder,
+    styleMap: styleMap
+  };
+};
+
+var addEffectValue = function addEffectValue(styleMap, fileName, token, tokenKey, tokenValue) {
+  if (isNaN(tokenValue)) {
+    throw Error("The part of the filename: '" + fileName + "' containing the code: '" + token + "'\n                    is followed by a value: '" + tokenValue + "' that can't be converted to a number.\n                    It must be a number");
+  }
+
+  styleMap[effectTokenMap[tokenKey]] = Number.parseInt(tokenValue, 10);
+};
+var addBlendMode = function addBlendMode(styleMap, fileName, token, tokenKey, tokenValue) {
+  if (blendModeMap[tokenValue] !== undefined) {
+    styleMap[blendModeTokenMap[tokenKey]] = blendModeMap[tokenValue];
+  } else {
+    throw Error("The part of the filename: '" + fileName + "' containing the blend mode code: '" + token + "'\n                    is followed by a value that isn't a code for a blend mode. '" + tokenValue + "' is not a blend mode. \n                    The allowed codes for the blend modes are: \n                    " + JSON.stringify(blendModeMap, null, 2));
+  }
+};
+var addBooleanValue = function addBooleanValue(styleMap, fileName, token, tokenKey, tokenValue) {
+  if (tokenValue !== 'T' &amp;&amp; tokenValue !== 'F') {
+    throw Error("The part of the filename: '" + fileName + "' containing the code: '" + token + "'\n                    is followed by a code that can't be converted to true of false.  It's '" + tokenValue + "'. \n                    It must be either 'T' or 'F'");
+  }
+
+  styleMap[booleanTokenMap[tokenKey]] = tokenValue === 'T';
+};
+
+function addColorVariant(styleMap, fileName, token, tokenKey, tokenValue) {
+  if (tokenValue === 'A' || tokenValue === 'P' || tokenValue === 'S') {
+    styleMap[colorTokenMap[tokenKey]] = colorVariantMap[tokenValue];
+  } else {
+    throw Error("The part of the filename: '" + fileName + "' containing the code: '" + token + "'\n                    is followed by a code that can't be converted to primary, secondary or accent.\n                    It must be either 'A', 'P' or 'S'");
+  }
+}
+
+var loadCompositionElements = function loadCompositionElements(transpData, assetId, compId) {
+  if (!assetId || !compId) {
+    throw new Error('Asset ID and composite ID are required');
+  }
+
+  var asset = transpData.assets.find(function (asset) {
+    return asset.id === assetId;
+  });
+
+  if (!asset) {
+    throw new Error("No asset found for " + assetId);
+  }
+
+  var comp = asset.comps.find(function (comp) {
+    return comp.name === compId;
+  });
+
+  if (!comp) {
+    comp = asset.comps[0]; // const alertCompFallback = true; // TO DO - add alert flag to tile to indicate fallback was used
+
+    if (!comp.name) {
+      throw new Error("No composite found for " + compId + " for asset " + assetId);
+    }
+  } // const imageAspectRatio = asset.width / asset.height;
+
+
+  return {
+    asset: asset,
+    comp: comp
+  };
+};
+
+var getImageDataUrl = function getImageDataUrl(file) {
+  var reader = new FileReader();
+  return URL.createObjectURL(file);
+};
+
+var buildStylizableLayers = function buildStylizableLayers(files, lenientFilenames) {
+  if (lenientFilenames === void 0) {
+    lenientFilenames = false;
+  }
+
+  var filenames = files.map(function (file) {
+    return file.name;
+  });
+  var styleMaps = parseStylablezFiles(filenames, lenientFilenames);
+  return styleMaps.map(function (stylMap, idx) {
+    return {
+      sourceId: files[idx].name,
+      styleMap: stylMap,
+      imageDataUrl: getImageDataUrl(files[idx])
+    };
+  });
+};
+/**
+ * Given a sorted list of files, parse the filenames to create a layer for each one.
+ * Then compose those into a composition.
+ * @param files
+ */
+
+var loadCompositionLayers = function loadCompositionLayers(name, files) {
+  var layers = buildStylizableLayers(files);
+  return {
+    name: name,
+    layers: layers
+  };
+};
+var loadLayerSourceImage = function loadLayerSourceImage() {
+  //export const loadLayerSourceImage = (layer: Layer, asset: StylablezWork) => {
+  return null;
+};
+
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i &lt; arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+var getPaletteNames = function getPaletteNames(paletteList) {
+  var names = paletteList.palettes.map(function (palette) {
+    return palette.name;
+  });
+  return names;
+};
+var getPalette = function getPalette(paletteList, name) {
+  var palette = paletteList.palettes.find(function (palette) {
+    return palette.name === name;
+  });
+
+  if (!palette) {
+    throw new Error("The palette: " + name + " could not be found in the palette list.");
+  }
+
+  return palette;
+};
+var getHexesForPalette = function getHexesForPalette(palette) {
+  return {
+    primary: palette.colors[0].hex,
+    secondary: palette.colors[1].hex,
+    accent: palette.colors[2].hex
+  };
+};
+var getHexForLabel = function getHexForLabel(palette, label) {
+  if (label === 'prim') {
+    return palette.colors[0].hex;
+  } else if (label === 'scnd') {
+    return palette.colors[1].hex;
+  } else if (label === 'acnt') {
+    return palette.colors[2].hex;
+  } else {
+    return label;
+  }
+};
+var getLabelForHex = function getLabelForHex(palette, hex) {
+  if (hex.startsWith('rgb')) {
+    // https://stackoverflow.com/a/33511903/223225
+    hex = '#' + hex.substr(4, hex.indexOf(')') - 4).split(',').map(function (color) {
+      return parseInt(color).toString(16);
+    }).join('');
+  }
+
+  var colorIndex = palette.colors.findIndex(function (color) {
+    return color.hex === hex;
+  });
+
+  if (colorIndex === 0) {
+    return 'prim';
+  } else if (colorIndex === 1) {
+    return 'scnd';
+  } else if (colorIndex === 2) {
+    return 'acnt';
+  } else {
+    return hex;
+  }
+};
+var extractLayerStyles = function extractLayerStyles(palette, layer, width, height) {
+  var imgDataUrl = layer.imageDataUrl;
+  var stylizableMap = layer.styleMap;
+  var layerStyle = {
+    // Add width and height when rendering HTML, based on parent element
+    mixBlendMode: stylizableMap.mixBlendMode || 'normal',
+    visibility: stylizableMap.visible === false ? 'hidden' : 'visible',
+    width: width,
+    height: height,
+    filter: "brightness(100%)",
+    opacity: 1
+  };
+
+  if (stylizableMap.backgroundColor &amp;&amp; stylizableMap.backgroundColor !== 'transparent') {
+    layerStyle.backgroundColor = getHexForLabel(palette, stylizableMap.backgroundColor);
+  }
+
+  if (stylizableMap.brightness) {
+    layerStyle.filter = "brightness(" + stylizableMap.brightness + "%)";
+  }
+
+  if (stylizableMap.opacity) {
+    layerStyle.opacity = Number(stylizableMap.opacity) * 0.01;
+  }
+
+  if (stylizableMap.mask) {
+    layerStyle = _extends({}, layerStyle, {
+      'mask-repeat': 'no-repeat',
+      '-webkit-mask-repeat': 'no-repeat',
+      '-webkit-mask-size': 'contain',
+      'mask-size': 'contain'
+    });
+
+    if (imgDataUrl) {
+      layerStyle = _extends({}, layerStyle, {
+        'mask-image': "url('" + imgDataUrl + "')",
+        '-webkit-mask-image': "url('" + imgDataUrl + "')"
+      });
+    }
+  } else {
+    layerStyle = _extends({}, layerStyle, {
+      backgroundBlendMode: stylizableMap.backgroundBlend,
+      backgroundSize: 'contain',
+      backgroundRepeat: 'no-repeat'
+    });
+
+    if (imgDataUrl) {
+      layerStyle = _extends({}, layerStyle, {
+        backgroundImage: "url('" + imgDataUrl + "')"
+      });
+    }
+  }
+
+  return layerStyle;
+};
+
+var CompositionLayer = function CompositionLayer(props) {
+  var layer = props.layer,
+      width = props.width,
+      height = props.height,
+      palette = props.palette;
+  return useMemo(function () {
+    var layerStyle = extractLayerStyles(palette, layer, width, height);
+    return React.createElement("div", {
+      style: {
+        flex: '1 1 auto',
+        display: 'flex',
+        flexWrap: 'wrap',
+        marginLeft: -12,
+        marginRight: -12,
+        position: 'absolute'
+      }
+    }, React.createElement("div", {
+      style: layerStyle
+    }));
+  }, [layer, palette]);
+};
+
+var Composite = function Composite(props) {
+  var backgroundColor = props.backgroundColor,
+      layers = props.layers,
+      layerWidth = props.layerWidth,
+      layerHeight = props.layerHeight,
+      palette = props.palette;
+  return React.createElement("div", {
+    style: {
+      backgroundColor: backgroundColor,
+      width: '100%',
+      height: '100%',
+      position: 'absolute'
+    }
+  }, layers.map(function (layer, layerIndex) {
+    return React.createElement(CompositionLayer, {
+      key: layerIndex,
+      layer: layer,
+      width: layerWidth,
+      height: layerHeight,
+      palette: palette
+    });
+  }));
+};
+
+var sum = function sum(a, b) {
+  if ('development' === process.env.NODE_ENV) {
+    console.log('boop');
+  }
+
+  return a + b;
+};
+
+export { Composite, CompositionLayer, addBlendMode, addBooleanValue, addEffectValue, blendModeMap, buildStylizableLayers, extractLayerStyles, getHexForLabel, getHexesForPalette, getLabelForHex, getPalette, getPaletteNames, loadCompositionElements, loadCompositionLayers, loadLayerSourceImage, parseStylablezFiles, sum };
+//# sourceMappingURL=core.esm.js.map
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#loadCompositionLayers">loadCompositionLayers</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed Jun 02 2021 20:55:15 GMT-0500 (Central Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

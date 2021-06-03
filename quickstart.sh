@@ -1,4 +1,5 @@
 cd core
+jsdoc -d docs *
 yarn install
 yarn build
 cd ../examples/dnd
