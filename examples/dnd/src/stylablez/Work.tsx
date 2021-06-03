@@ -24,10 +24,15 @@ const useStyles = makeStyles((theme: Theme) =>
             position: 'absolute',
             left: 70
         },
-        compWrapper: {
+        outerWrapper: {
             position: 'absolute',
             top: 100,
             left: 100
+        },
+        compWrapper: {
+            width: 800,
+            height: 500,
+            position: 'relative'
         },
         noDragActive: {
             backgroundColor: 'green'
@@ -121,10 +126,12 @@ export const Work = (props: WorkProps)  => {
         })
     }, [])
 
-    const {getRootProps,
+    const {
+        getRootProps,
         isDragActive,
         isDragAccept,
-        isDragReject} = useDropzone({
+        isDragReject
+    } = useDropzone({
         noDragEventsBubbling: true,
         onDrop: onDrop,
         accept: 'image/*'
@@ -150,18 +157,20 @@ export const Work = (props: WorkProps)  => {
         <RootRef rootRef={ref}>
             <Paper {...rootProps} elevation={0}>
                 <p className={classes.text}>Drag 'n' drop some image files below</p>
-                {state.layers.length > 0 ? <div className={classes.compWrapper}><Composite
-                    backgroundColor={backgroundColorValue}
-                    layers={state.layers}
-                    layerHeight={500}
-                    layerWidth={800}
-                    palette={state.palette}
-                    /></div>
-                : <img src={splash} className={`${classes.img} ${dragStyle}`} alt={""}/>
+                {state.layers.length > 0 ? <div className={classes.outerWrapper}>
+                        <div className={classes.compWrapper}><Composite
+                            backgroundColor={backgroundColorValue}
+                            layers={state.layers}
+                            layerHeight={500}
+                            layerWidth={800}
+                            palette={state.palette}
+                        /></div>
+                    </div>
+                    : <img src={splash} className={`${classes.img} ${dragStyle}`} alt={""}/>
                 }
-            <div className={`${classes.wrapper}`}>
-                <EditLayersPanel compositionState={state} dispatch={dispatch}/>
-            </div>
+                <div className={`${classes.wrapper}`}>
+                    <EditLayersPanel compositionState={state} dispatch={dispatch}/>
+                </div>
             </Paper>
         </RootRef>
     )
