@@ -73,6 +73,30 @@ export const palettes: PaletteList = {
                     "palette": "acnt"
                 }
             ]
+        },
+        {
+            "name": "Hot Dog",
+            "tone": "dark",
+            "colors": [
+                {
+                    "tone": "light",
+                    "usage": "none",
+                    "hex": "#FFFFFF",
+                    "palette": "primary"
+                },
+                {
+                    "tone": "light",
+                    "usage": "none",
+                    "hex": "#FF0000",
+                    "palette": "secondary"
+                },
+                {
+                    "tone": "dark",
+                    "usage": "none",
+                    "hex": "#00FF00",
+                    "palette": "accent"
+                }
+            ]
         }
     ]
 }
