@@ -12,28 +12,40 @@ export interface Palette {
     colors: Color[];
 }
 
+/**
+ * A container contaiing a list of palettes
+ */
 export interface PaletteList {
     palettes: Palette[];
 }
 
+/**
+ * Maps to CSSStyleDeclarations that should be usable on elements
+ * that can take CSS style rules.
+ */
 export interface LayerStyle {
     [name: string]: string | number | boolean | undefined
 }
 
+/**
+ * An object that contains values describing the visual attributes of a styled layer.
+ * Together with a palette values in Layer object can be used to create CSS style
+ * declarations
+ */
 export interface Layer {
     sourceId: string;
     styleMap: StylAbleZMap;
     imageDataUrl?: string;
 }
 
-/**
- * This is just
- */
 export interface StylAbleZMap {
     [styleName: string]: string | number | boolean | undefined;
     backgroundColor?: string;
 }
 
+/**
+ * A container for of layers that can be referenced by name.
+ */
 export interface Composition {
     name: string;
     layers: Layer[];

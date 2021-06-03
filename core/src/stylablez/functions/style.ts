@@ -9,11 +9,18 @@ import {
 } from "../model/types";
 import {loadLayerSourceImage} from "./layers";
 
+/**
+ * Extracts a list of names from the provided palette list
+ * @param paletteList the list with palette names that will be extracted
+ */
 export const getPaletteNames = (paletteList: PaletteList): string[] => {
     const names = paletteList.palettes.map(palette => palette.name);
     return names
 }
 
+/**
+ * A simple utility method to find the palette with the specified name and return it
+ */
 export const getPalette = (paletteList: PaletteList, name: string): Palette => {
     const palette =  paletteList.palettes.find(palette => palette.name === name);
     if (!palette) {
@@ -36,6 +43,12 @@ export const getHexesForPalette = (palette: Palette): VariantHex => {
     }
 }
 
+/**
+ * For the specified label this will return the hex color value that is configued in
+ * the palette
+ * @param palette the palette with the lebeled hex colors
+ * @param label one of: prim, scnd, or acnt which represent keys in the palette
+ */
 export const getHexForLabel = (palette: Palette, label: string) => {
     if (label === 'prim') {
         return palette.colors[0].hex;
@@ -69,6 +82,11 @@ export interface StyleMap {
     [styleName: string]: string | number
 }
 
+/**
+ * Givent the specified palette and layer this will create styles that can be directely
+ * applied to elements that take CSS styls.  The layer specs will be used ot map values out
+ * of the palette and create the styles.
+ */
 export const extractLayerStyles = (palette: Palette, layer: Layer,  width: number, height: number): LayerStyle => {
     const imgDataUrl = layer.imageDataUrl
     const stylizableMap: StylAbleZMap = layer.styleMap

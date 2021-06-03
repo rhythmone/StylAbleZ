@@ -27,10 +27,10 @@ const useStyles = makeStyles((theme: Theme) =>
         outerWrapper: {
             position: 'absolute',
             top: 100,
-            left: 100
+            left: 60
         },
         compWrapper: {
-            width: 800,
+            width: 850,
             height: 500,
             position: 'relative'
         },
