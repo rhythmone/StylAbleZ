@@ -16,7 +16,7 @@
     "build": "tsdx build",
     "test": "tsdx test",
     "lint": "tsdx lint",
-    "doc": "jsdoc ./src -r -c ./jsdoc.conf -d docs",
+    "doc": "jsdoc ./src -r -R README.md -c ./jsdoc.conf -d docs",
     "prepare": "tsdx build",
     "size": "size-limit",
     "analyze": "size-limit --why"
