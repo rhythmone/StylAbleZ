@@ -2,6 +2,10 @@ import {StylAbleZMap} from "../model/types";
 
 const tokenDelimiter = '_';
 
+/**
+ * The keys in this object can be provided in a filename followed by a numeric value that will be used to set a
+ * numeric value (1 - 100) for the corresponding style attribute on the layer image.
+ */
 const effectTokenMap: {[key: string]: string} = {
     'UR': 'blur',
     'BR': 'brightness',
@@ -14,26 +18,48 @@ const effectTokenMap: {[key: string]: string} = {
     'SP': 'sepia'
 }
 
+/**
+ * The keys in this object can will be embedded in a filename to set look up a blend mode in the
+ * #blendModeMap which will be set on the layer for that image.  The allowable values that follow
+ * the characters are found in #blendModeMap
+ */
 const blendModeTokenMap: {[key: string]: string} = {
     'BL': 'mixBlendMode',
     'BB': 'backgroundBlendMode',
 }
 
+/**
+ * Filenames with these tokens in them will be used to set a value of T or F (true or false) for
+ * the corresponding style attribute on the layer image.
+ */
 const booleanTokenMap: {[key: string]: string} = {
     'VI': 'visible',
     'MA': 'mask',
 }
 
+/**
+ * The keys of this object can be included in a fielename to be used
+ * to lookup a color from a palette
+ * that corresponds to a primary, accent or secondary color.
+ */
 const colorTokenMap: {[key: string]: string} = {
     'CL': 'backgroundColor',
 }
 
+/**
+ * These are the characters that can follow a CL token. The color value is looked up
+ * in the palette
+ */
 const colorVariantMap: {[key: string]: string} = {
     'A': 'accent',
     'P': 'primary',
     'S': 'secondary',
 }
 
+/**
+ * The keys in this map are valid blend modes that can follow a blend mode key
+ *[Blend Modes]{@link https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation}
+ */
 export const blendModeMap: {[key: string]: string} = {
     'NM': 'normal',
     'ML': 'multiply',
@@ -60,6 +86,13 @@ interface Stylable {
     styleMap: StylAbleZMap
 }
 
+/**
+ * Given a list of filenames, this will extract tokens that are delimed by '_' characters.
+ * any tokens that contain a '-' will be ignored.
+ * @param filenames filenames that will be parsed to return a corresponding map of styles
+ * @param lenientFilenames set this to true to prevent errors from being thrown when files
+ * may be provided with names that could not be parsed
+ */
 export const parseStylablezFiles = (filenames: string[], lenientFilenames: boolean = false): StylAbleZMap[] => {
     const stylables = filenames.map((filename) => parseStylablezFilename(filename, lenientFilenames))
     stylables.sort((s1, s2) => {
@@ -86,6 +119,11 @@ function throwFullError(fileName: string, token: string) {
     throw Error(message)
 }
 
+/*
+ * @param filename filename that will be parsed to return a corresponding map of styles
+ * @param lenientFilenames set this to true to prevent errors from being thrown when files
+ * may be provided with names that could not be parsed
+ */
 const parseStylablezFilename = (fileName: string, lenientFilenames: boolean = false): Stylable => {
     let layerOrder
     const stripped = fileName.replace(/\s+/g, '')

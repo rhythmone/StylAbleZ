@@ -4,6 +4,9 @@ A library for processing a stack of images that can flex in both color and style
 
 ![](/image/splash.png?raw=true)
 
+# Demo
+[Drag some files into this Demo](https://joshuaedeford.github.io/StylAbleZ/examples/dnd/build/index.html)
+
 # Get Started
 
 > For a quick example run: [Core Library](core)

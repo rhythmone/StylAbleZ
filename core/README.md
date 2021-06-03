@@ -10,4 +10,8 @@ A library for processing a stack of images that can flex in both color and style
 > * See the [Example](core/README.md)
 
 
-## Get Started
+## Working with Palettes
+* A sample palette TODO
+
+## Working with StylAbleZ LayerComposition
+TODO

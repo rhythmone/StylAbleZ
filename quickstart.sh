@@ -1,6 +1,6 @@
 cd core
-jsdoc -d docs *
 yarn install
+yarn doc
 yarn build
 cd ../examples/dnd
 rm -rf node_modules

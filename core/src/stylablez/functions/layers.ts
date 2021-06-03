@@ -28,6 +28,13 @@ const getImageDataUrl = (file: File): string => {
     return  URL.createObjectURL(file)
 }
 
+/**
+ * Call this method to convert a list of files to layers.
+ * @param files image files used to construct layers.  If their names can be parsed by the
+ * with #parseStylablezFiles a set of default styles will be included in each layer based
+ * on the tokens parsed from the filename.  Each layer will then be styled accordingly.
+ * @param lenientFilenames
+ */
 export const buildStylizableLayers = (files: File[], lenientFilenames: boolean = false): Layer[] => {
     const filenames: string[] = files.map(file => file.name)
 
