@@ -213,7 +213,9 @@ function throwFullError(fileName: string, token: string) {
  */
 const parseStylablezFilename = (fileName: string, lenientFilenames: boolean = false): Stylable => {
     let layerOrder
-    const stripped = fileName.replace(/\s+/g, '')
+    const extensionIdx = fileName.lastIndexOf('.')
+    const strippedOfExtension = fileName.substring(0, extensionIdx)
+    const stripped = strippedOfExtension.replace(/\s+/g, '')
     const tokens = stripped.toUpperCase().split(tokenDelimiter)
     const styleMap: StylAbleZMap = {}
     const cleanTokens = tokens.filter(token => token.indexOf('-') &lt; 0)
@@ -249,9 +251,8 @@ const parseStylablezFilename = (fileName: string, lenientFilenames: boolean = fa
 
     if (layerOrder === undefined &amp;&amp; !lenientFilenames) {
         throw Error(`The filename: '${fileName}' must begin with a number which indicates what order it should be inserted into the stack.`)
-    } else {
-        layerOrder = 0
     }
+   layerOrder = layerOrder || 0
 
     return {
         layerOrder,
