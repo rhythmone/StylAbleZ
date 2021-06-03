@@ -4,6 +4,7 @@ StyleAbleZ is a library for processing a stack of images that can flex in both c
 
 # Demo
 [Drag some files into this Demo](https://rhythmone.github.io/StylAbleZ/examples/dnd/build/index.html)
+You can find some [sample images here](https://github.com/rhythmone/StylAbleZ/tree/main/examples/sample_images).
 
 # Get Started
 
