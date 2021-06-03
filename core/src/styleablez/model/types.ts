@@ -1,19 +1,22 @@
-
+/**
+ * Represents a color by hex code for use within a palette.
+ * The class indicates the context in which it should be displayed for the palette it belongs to
+ */
 export interface Color {
-    tone: string;
     hex: string;
-    usage: string;
-    palette: string;
+    class: string;
 }
 
+/**
+ *  A named set of colors
+ */
 export interface Palette {
     name: string;
-    tone: string;
     colors: Color[];
 }
 
 /**
- * A container contaiing a list of palettes
+ * A container containing a list of palettes
  */
 export interface PaletteList {
     palettes: Palette[];
@@ -29,22 +32,22 @@ export interface LayerStyle {
 
 /**
  * An object that contains values describing the visual attributes of a styled layer.
- * Together with a palette values in Layer object can be used to create CSS style
- * declarations
+ * Together with palette values, a Layer object can be used to create CSS style
+ * declarations.
  */
 export interface Layer {
     sourceId: string;
-    styleMap: StylAbleZMap;
+    styleMap: StyleAbleZMap;
     imageDataUrl?: string;
 }
 
-export interface StylAbleZMap {
+export interface StyleAbleZMap {
     [styleName: string]: string | number | boolean | undefined;
     backgroundColor?: string;
 }
 
 /**
- * A container for of layers that can be referenced by name.
+ * A container for Layers that can be referenced by name.
  */
 export interface Composition {
     name: string;

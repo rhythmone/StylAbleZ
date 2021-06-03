@@ -75,6 +75,7 @@ export const EditLayersPanel = (props: LayerEditorProps) => {
     const {layers, paletteNames, palette} = compositionState
     const classes = useStyles();
 
+
     const [shownEditor, setShownEditor] = useState(-1);
 
     return (<Drawer

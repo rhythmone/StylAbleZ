@@ -141,7 +141,7 @@ Consult the documentation to determine which combinations of letters and numbers
 
 exports[`A filename with one of each of the tokens is correctly parsed 1`] = `
 Object {
-  "layerOrder": 0,
+  "layerOrder": 10,
   "styleMap": Object {
     "backgroundColor": "accent",
     "blur": 12,
@@ -153,7 +153,7 @@ Object {
 
 exports[`A filename with one of each of the tokens is correctly parsed with no regard to casae 1`] = `
 Object {
-  "layerOrder": 0,
+  "layerOrder": 10,
   "styleMap": Object {
     "backgroundColor": "accent",
     "blur": 12,
@@ -167,7 +167,13 @@ exports[`Many filenames are correctly ordered. 1`] = `
 Array [
   Object {
     "backgroundColor": "accent",
-    "blur": 99,
+    "blur": 909,
+    "mixBlendMode": "darker-color",
+    "visible": false,
+  },
+  Object {
+    "backgroundColor": "accent",
+    "blur": 2,
     "mixBlendMode": "darker-color",
     "visible": false,
   },
@@ -185,25 +191,19 @@ Array [
   },
   Object {
     "backgroundColor": "accent",
-    "blur": 2,
-    "mixBlendMode": "darker-color",
-    "visible": false,
-  },
-  Object {
-    "backgroundColor": "accent",
     "blur": 30,
     "mixBlendMode": "darker-color",
     "visible": false,
   },
   Object {
     "backgroundColor": "accent",
-    "blur": 100,
+    "blur": 99,
     "mixBlendMode": "darker-color",
     "visible": false,
   },
   Object {
     "backgroundColor": "accent",
-    "blur": 909,
+    "blur": 100,
     "mixBlendMode": "darker-color",
     "visible": false,
   },
