@@ -33,7 +33,6 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "author": "Joshua DeFord",
   "module": "dist/mylib.esm.js",
   "size-limit": [
     {
