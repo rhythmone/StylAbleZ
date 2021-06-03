@@ -2,6 +2,9 @@
 
 A library for processing a stack of images that can flex in both color and style according to the digital product they are embedded in.
 
+## Demo
+You can find a working example of a project using this library [here](https://joshuaedeford.github.io/StylAbleZ/examples/dnd/build/index.html)
+
 ## Get Started
 
 > * yarn install @stylablez/core
