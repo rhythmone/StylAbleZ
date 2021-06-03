@@ -22,6 +22,6 @@ A library for processing a stack of images that can flex in both color and style
  
 # API Docs
 > * The quickstart script generates the  [docs here](./core/docs/@stylizablez/core/0.1.0/index.html)
-> * The docs also [live here](https://joshuaedeford.github>io/StylAbleZ/core/docs/@stylizablez/core/0.1.0/index.html)
+> * The docs also [live here](https://joshuaedeford.github.io/StylAbleZ/core/docs/)
 > 
 > * See [Core Library](core) for documentation and details
