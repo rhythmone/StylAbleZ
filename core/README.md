@@ -12,7 +12,18 @@ You can find a working example of a project using this library [here](https://jo
 
 
 ## Working with Palettes
-* A sample palette TODO
+> * A sample palette TODO
 
 ## Working with StylAbleZ LayerComposition
-TODO
+> * TODO
+
+## StylAbleZ React Controlled Components
+> * TODO
+
+
+# API Docs
+> * The quickstart script generates the  [docs here](./core/docs/@stylizablez/core/0.1.0/index.html)
+> * The docs also [live here](https://joshuaedeford.github>io/StylAbleZ/core/docs/@stylizablez/core/0.1.0/index.html) 
+> * They can be generated with
+>   * `cd StylAbleZ/core`
+>   * `yarn doc`
