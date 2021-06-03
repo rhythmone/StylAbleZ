@@ -8,7 +8,7 @@ You can find a working example of a project using this library [here](https://rh
 ## Get Started
 
 > * yarn install @stylablez/core
-> * See the [Example](core/README.md)
+> * See the [Example](./core/README.md)
 
 
 ## Working with Palettes
