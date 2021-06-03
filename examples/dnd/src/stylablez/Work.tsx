@@ -24,6 +24,11 @@ const useStyles = makeStyles((theme: Theme) =>
             position: 'absolute',
             left: 70
         },
+        compWrapper: {
+            position: 'absolute',
+            top: 100,
+            left: 100
+        },
         noDragActive: {
             backgroundColor: 'green'
         },
@@ -145,13 +150,13 @@ export const Work = (props: WorkProps)  => {
         <RootRef rootRef={ref}>
             <Paper {...rootProps} elevation={0}>
                 <p className={classes.text}>Drag 'n' drop some image files below</p>
-                {state.layers.length > 0 ? <Composite
+                {state.layers.length > 0 ? <div className={classes.compWrapper}><Composite
                     backgroundColor={backgroundColorValue}
                     layers={state.layers}
-                    layerHeight={800}
+                    layerHeight={500}
                     layerWidth={800}
                     palette={state.palette}
-                />
+                    /></div>
                 : <img src={splash} className={`${classes.img} ${dragStyle}`} alt={""}/>
                 }
             <div className={`${classes.wrapper}`}>
