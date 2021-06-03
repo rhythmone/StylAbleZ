@@ -50,11 +50,11 @@ export const getHexesForPalette = (palette: Palette): VariantHex => {
  * @param label one of: prim, scnd, or acnt which represent keys in the palette
  */
 export const getHexForLabel = (palette: Palette, label: string) => {
-    if (label === 'prim') {
+    if (label === 'prim' || label === 'primary') {
         return palette.colors[0].hex;
-    } else if (label === 'scnd') {
+    } else if (label === 'scnd' || label === 'secondary') {
         return palette.colors[1].hex;
-    } else if (label === 'acnt') {
+    } else if (label === 'acnt' || label === 'accent') {
         return palette.colors[2].hex;
     } else {
         return label;
