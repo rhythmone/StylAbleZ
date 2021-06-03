@@ -23,11 +23,6 @@ export const loadCompositionElements = (transpData: Gallery, assetId: string, co
     return {asset, comp};
 }
 
-export interface LayerSource {
-    filename: string;
-    imageDataUrl: string;
-}
-
 const getImageDataUrl = (file: File): string => {
     const reader = new FileReader();
     return  URL.createObjectURL(file)
@@ -38,6 +33,7 @@ export const buildStylizableLayers = (files: File[], lenientFilenames: boolean =
 
     const styleMaps: StylAbleZMap[] = parseStylablezFiles(filenames, lenientFilenames)
     return styleMaps.map((stylMap, idx) => ({
+        sourceId: files[idx].name,
         styleMap: stylMap,
         imageDataUrl: getImageDataUrl(files[idx])
     }));

@@ -1,5 +1,4 @@
-import {Layer, StylAbleZMap} from "../model/types";
-import {LayerSource} from "./layers";
+import {StylAbleZMap} from "../model/types";
 
 const tokenDelimiter = '_';
 

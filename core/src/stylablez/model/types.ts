@@ -19,15 +19,11 @@ export interface PaletteList {
 export interface LayerStyle {
     [name: string]: string | number | boolean | undefined
 }
-export interface Image {
-    sourceId: string;
-    filename: string;
-}
 
 export interface Layer {
-    sourceId?: string;
-    imageDataUrl?: string;
+    sourceId: string;
     styleMap: StylAbleZMap;
+    imageDataUrl?: string;
 }
 
 /**
@@ -55,7 +51,6 @@ export interface StylablezWork {
     alt: string;
     width: number;
     height: number;
-    images: Image[];
     comps: Composition[];
 }
 

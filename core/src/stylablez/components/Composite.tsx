@@ -1,22 +1,18 @@
-import React, {useState} from 'react';
+import React from 'react';
 
-import {PaletteList, StylablezWork} from "../model/types";
-import {getPaletteNames} from "../functions/style";
+import {Layer, Palette} from "../model/types";
 import {CompositionLayer} from "./CompositionLayer";
-import {Layer} from "../model/types";
 
 interface CompositeProps {
-    width: number;
-    height: number;
+    backgroundColor: string;
+    layerWidth: number;
+    layerHeight: number;
     layers: Layer[];
-    paletteList: PaletteList;
+    palette: Palette;
 }
 
 export const Composite = (props: CompositeProps) => {
-    const {width, height, layers, paletteList} = props
-    const [backgroundColor, setBackground] = useState('transparent');
-    const [paletteName, setPaletteName] =useState(getPaletteNames(paletteList)[0]);
-    const [onlyLayer, setOnlyLayer] =useState(-1);
+    const {backgroundColor, layers, layerWidth, layerHeight, palette} = props
 
     return <div style={{
         backgroundColor: backgroundColor,
@@ -26,17 +22,12 @@ export const Composite = (props: CompositeProps) => {
     }}>
         {
             layers.map((layer: Layer, layerIndex: number) => {
-                if (onlyLayer < 0 || layerIndex === onlyLayer) {
-                    return <CompositionLayer
-                        key={layerIndex}
-                        layer={layer}
-                        width={width}
-                        height={height}
-                        paletteName={paletteName}
-                        paletteList={paletteList} />
-                } else {
-                    return null
-                }
+                return <CompositionLayer
+                    key={layerIndex}
+                    layer={layer}
+                    width={layerWidth}
+                    height={layerHeight}
+                    palette={palette} />
             })
         }
     </div>

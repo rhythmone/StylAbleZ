@@ -24,11 +24,9 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const Composite = (props: CompositeProps) => {
     const classes = useStyles();
-    const {width, height, asset, comp} = props
     const [backgroundColor, setBackground] = useState('transparent');
     const [paletteName, setPaletteName] =useState(getPaletteNames()[0]);
     const [onlyLayer, setOnlyLayer] =useState(-1);
-    const layers = comp.comp
 
     return <div className={classes.compositeWrapper} style={{backgroundColor: backgroundColor}}>
         {
