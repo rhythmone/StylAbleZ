@@ -20,6 +20,6 @@ You can find some [sample images here](https://github.com/rhythmone/StylAbleZ/tr
 > * There are sample files in [the examples directory](examples/sample_images).  You can drag into the example when it starts
 
 # API Docs
-> * The quickstart script generates the  [docs here](./core/docs/index.html)
+> * The quickstart script generates into: ./core/docs/index.html
 > * The live docs [live here](https://rhythmone.github.io/StylAbleZ/core/docs/)
 > * See [Core Library](core) for documentation and details around generating documentation
