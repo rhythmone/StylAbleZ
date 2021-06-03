@@ -2,7 +2,7 @@
 
 A library for processing a stack of images that can flex in both color and style according to the digital product they are embedded in.
 
-![Inclusive and stylish StylAbleZ logo](/image/splash.png "StylAbleZ")
+![](/image/splash.png?raw=true)
 
 # Get Started
 
