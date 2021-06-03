@@ -3,7 +3,7 @@ import { PaletteList } from '@stylizablez/core'
 export const palettes: PaletteList = {
     "palettes": [
         {
-            "name": "classic",
+            "name": "Classic",
             "tone": "light",
             "colors": [
                 {
@@ -27,7 +27,7 @@ export const palettes: PaletteList = {
             ]
         },
         {
-            "name": "warm",
+            "name": "Warm",
             "tone": "light",
             "colors": [
                 {
@@ -51,7 +51,7 @@ export const palettes: PaletteList = {
             ]
         },
         {
-            "name": "helvNue",
+            "name": "Neuv",
             "tone": "dark",
             "colors": [
                 {
