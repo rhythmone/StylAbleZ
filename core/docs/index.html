@@ -66,7 +66,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="CompositionLayer.html">CompositionLayer</a></li></ul><h3>Interfaces</h3><ul><li><a href="CompositeProps.html">CompositeProps</a></li><li><a href="Composition.html">Composition</a></li><li><a href="Layer.html">Layer</a></li><li><a href="LayerProps.html">LayerProps</a></li><li><a href="LayerStyle.html">LayerStyle</a></li><li><a href="PaletteList.html">PaletteList</a></li></ul><h3>Global</h3><ul><li><a href="global.html#blendModeMap">blendModeMap</a></li><li><a href="global.html#blendModeTokenMap">blendModeTokenMap</a></li><li><a href="global.html#booleanTokenMap">booleanTokenMap</a></li><li><a href="global.html#buildStylizableLayers">buildStylizableLayers</a></li><li><a href="global.html#colorTokenMap">colorTokenMap</a></li><li><a href="global.html#colorVariantMap">colorVariantMap</a></li><li><a href="global.html#Composite">Composite</a></li><li><a href="global.html#effectTokenMap">effectTokenMap</a></li><li><a href="global.html#extractLayerStyles">extractLayerStyles</a></li><li><a href="global.html#getHexForLabel">getHexForLabel</a></li><li><a href="global.html#getPalette">getPalette</a></li><li><a href="global.html#getPaletteNames">getPaletteNames</a></li><li><a href="global.html#loadCompositionLayers">loadCompositionLayers</a></li><li><a href="global.html#parseStylablezFiles">parseStylablezFiles</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="Composite.html">Composite</a></li><li><a href="CompositionLayer.html">CompositionLayer</a></li><li><a href="FilenameParser.html">FilenameParser</a></li><li><a href="LayerTool.html">LayerTool</a></li><li><a href="PaletteTool.html">PaletteTool</a></li></ul><h3>Interfaces</h3><ul><li><a href="Color.html">Color</a></li><li><a href="CompositeProps.html">CompositeProps</a></li><li><a href="Composition.html">Composition</a></li><li><a href="Layer.html">Layer</a></li><li><a href="LayerProps.html">LayerProps</a></li><li><a href="LayerStyle.html">LayerStyle</a></li><li><a href="Palette.html">Palette</a></li><li><a href="PaletteList.html">PaletteList</a></li></ul><h3>Global</h3><ul><li><a href="global.html#blendModeMap">blendModeMap</a></li><li><a href="global.html#blendModeTokenMap">blendModeTokenMap</a></li><li><a href="global.html#booleanTokenMap">booleanTokenMap</a></li><li><a href="global.html#colorTokenMap">colorTokenMap</a></li><li><a href="global.html#colorVariantMap">colorVariantMap</a></li><li><a href="global.html#effectTokenMap">effectTokenMap</a></li></ul></div>
                 
             </nav>
         </div>
@@ -100,43 +100,32 @@
 
 
     <section>
-        <article><h1>StyalAbleZ Image Stacking Library</h1>
+        <article><h1>StyleAbleZ Image Stacking Library</h1>
 <p>A library for processing a stack of images that can flex in both color and style according to the digital product they are embedded in.</p>
 <h2>Demo</h2>
 <p>You can find a working example of a project using this library <a href="https://rhythmone.github.io/StylAbleZ/examples/dnd/build/">here</a></p>
 <h2>Get Started</h2>
 <blockquote>
+<p>To install into your project:</p>
 <ul>
-<li>yarn install @stylablez/core</li>
-<li>See the <a href="core/README.md">Example</a></li>
+<li>yarn install @styleablez/core</li>
+<li>See the <a href="./examples/dnd">Example</a> for usage guidance.</li>
 </ul>
 </blockquote>
 <h2>Working with Palettes</h2>
-<blockquote>
-<ul>
-<li>A sample palette TODO</li>
-</ul>
-</blockquote>
-<h2>Working with StylAbleZ LayerComposition</h2>
-<blockquote>
-<ul>
-<li>TODO</li>
-</ul>
-</blockquote>
-<h2>StylAbleZ React Controlled Components</h2>
-<blockquote>
-<ul>
-<li>TODO</li>
-</ul>
-</blockquote>
+<p>A <a href="https://rhythmone.github.io/StylAbleZ/core/docs/Palette.html">Palette</a> is a simple object containing Color definitions to be used within some context.  A <a href="https://rhythmone.github.io/StylAbleZ/core/docs/Color.html">Color</a> definition contains a color hex value and a class that indicates when it should be used.  When a palette class is selected, the color for that class will be used.</p>
+<h2>Working with StyleAbleZ LayerComposition</h2>
+<p>Creating a <a href="https://rhythmone.github.io/StylAbleZ/core/docs/Composite.html">Composite</a> from a list of files is easy.  Just create a new <a href="https://rhythmone.github.io/StylAbleZ/core/docs/LayerTool.html">LayerTool</a> and call <a href="https://rhythmone.github.io/StylAbleZ/core/docs/LayerTool.html#buildStylizableLayers">buildStylizableLayers</a> providing a list of image files.  An example of how to do this is provided in the <a href="../examples/dnd/src/styleablez/work">demo in this repository</a>.</p>
+<h2>StyleAbleZ React Controlled Components</h2>
+<p>The only state a consumer of this library should need to manage within components is the <a href="https://rhythmone.github.io/StylAbleZ/core/docs/Palette.html">Palette</a> object and a list of <a href="https://rhythmone.github.io/StylAbleZ/core/docs/Layers.html">Layer</a> objects.  The <a href="https://rhythmone.github.io/StylAbleZ/core/docs/Composite.html">Composite</a> JSX element takes each of these as attributes.  All style extraction is done within the <a href="https://rhythmone.github.io/StylAbleZ/core/docs/CompositionLayers.html">Layer</a> so developers are free from having to manage any styling related to the layers.</p>
 <h1>API Docs</h1>
 <blockquote>
 <ul>
-<li>The quickstart script generates the  <a href="./core/docs/@stylizablez/core/0.1.0/index.html">docs here</a></li>
+<li>The quickstart script generates the  <a href="./core/docs">docs here</a></li>
 <li>The docs also <a href="https://rhythmone.github.io/StylAbleZ/core/docs/">live here</a></li>
 <li>They can be generated with
 <ul>
-<li><code>cd StylAbleZ/core</code></li>
+<li><code>cd StyleAbleZ/core</code></li>
 <li><code>yarn doc</code></li>
 </ul>
 </li>

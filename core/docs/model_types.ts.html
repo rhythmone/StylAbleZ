@@ -68,7 +68,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="CompositionLayer.html">CompositionLayer</a></li></ul><h3>Interfaces</h3><ul><li><a href="CompositeProps.html">CompositeProps</a></li><li><a href="Composition.html">Composition</a></li><li><a href="Layer.html">Layer</a></li><li><a href="LayerProps.html">LayerProps</a></li><li><a href="LayerStyle.html">LayerStyle</a></li><li><a href="PaletteList.html">PaletteList</a></li></ul><h3>Global</h3><ul><li><a href="global.html#blendModeMap">blendModeMap</a></li><li><a href="global.html#blendModeTokenMap">blendModeTokenMap</a></li><li><a href="global.html#booleanTokenMap">booleanTokenMap</a></li><li><a href="global.html#buildStylizableLayers">buildStylizableLayers</a></li><li><a href="global.html#colorTokenMap">colorTokenMap</a></li><li><a href="global.html#colorVariantMap">colorVariantMap</a></li><li><a href="global.html#Composite">Composite</a></li><li><a href="global.html#effectTokenMap">effectTokenMap</a></li><li><a href="global.html#extractLayerStyles">extractLayerStyles</a></li><li><a href="global.html#getHexForLabel">getHexForLabel</a></li><li><a href="global.html#getPalette">getPalette</a></li><li><a href="global.html#getPaletteNames">getPaletteNames</a></li><li><a href="global.html#loadCompositionLayers">loadCompositionLayers</a></li><li><a href="global.html#parseStylablezFiles">parseStylablezFiles</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="Composite.html">Composite</a></li><li><a href="CompositionLayer.html">CompositionLayer</a></li><li><a href="FilenameParser.html">FilenameParser</a></li><li><a href="LayerTool.html">LayerTool</a></li><li><a href="PaletteTool.html">PaletteTool</a></li></ul><h3>Interfaces</h3><ul><li><a href="Color.html">Color</a></li><li><a href="CompositeProps.html">CompositeProps</a></li><li><a href="Composition.html">Composition</a></li><li><a href="Layer.html">Layer</a></li><li><a href="LayerProps.html">LayerProps</a></li><li><a href="LayerStyle.html">LayerStyle</a></li><li><a href="Palette.html">Palette</a></li><li><a href="PaletteList.html">PaletteList</a></li></ul><h3>Global</h3><ul><li><a href="global.html#blendModeMap">blendModeMap</a></li><li><a href="global.html#blendModeTokenMap">blendModeTokenMap</a></li><li><a href="global.html#booleanTokenMap">booleanTokenMap</a></li><li><a href="global.html#colorTokenMap">colorTokenMap</a></li><li><a href="global.html#colorVariantMap">colorVariantMap</a></li><li><a href="global.html#effectTokenMap">effectTokenMap</a></li></ul></div>
                 
             </nav>
         </div>
@@ -85,22 +85,25 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>
+            <pre class="prettyprint source linenums"><code>/**
+ * Represents a color by hex code for use within a palette.
+ * The class indicates the context in which it should be displayed for the palette it belongs to
+ */
 export interface Color {
-    tone: string;
     hex: string;
-    usage: string;
-    palette: string;
+    class: string;
 }
 
+/**
+ *  A named set of colors
+ */
 export interface Palette {
     name: string;
-    tone: string;
     colors: Color[];
 }
 
 /**
- * A container contaiing a list of palettes
+ * A container containing a list of palettes
  */
 export interface PaletteList {
     palettes: Palette[];
@@ -116,22 +119,22 @@ export interface LayerStyle {
 
 /**
  * An object that contains values describing the visual attributes of a styled layer.
- * Together with a palette values in Layer object can be used to create CSS style
- * declarations
+ * Together with palette values, a Layer object can be used to create CSS style
+ * declarations.
  */
 export interface Layer {
     sourceId: string;
-    styleMap: StylAbleZMap;
+    styleMap: StyleAbleZMap;
     imageDataUrl?: string;
 }
 
-export interface StylAbleZMap {
+export interface StyleAbleZMap {
     [styleName: string]: string | number | boolean | undefined;
     backgroundColor?: string;
 }
 
 /**
- * A container for of layers that can be referenced by name.
+ * A container for Layers that can be referenced by name.
  */
 export interface Composition {
     name: string;

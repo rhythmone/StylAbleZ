@@ -66,7 +66,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="CompositionLayer.html">CompositionLayer</a></li></ul><h3>Interfaces</h3><ul><li><a href="CompositeProps.html">CompositeProps</a></li><li><a href="Composition.html">Composition</a></li><li><a href="Layer.html">Layer</a></li><li><a href="LayerProps.html">LayerProps</a></li><li><a href="LayerStyle.html">LayerStyle</a></li><li><a href="PaletteList.html">PaletteList</a></li></ul><h3>Global</h3><ul><li><a href="global.html#blendModeMap">blendModeMap</a></li><li><a href="global.html#blendModeTokenMap">blendModeTokenMap</a></li><li><a href="global.html#booleanTokenMap">booleanTokenMap</a></li><li><a href="global.html#buildStylizableLayers">buildStylizableLayers</a></li><li><a href="global.html#colorTokenMap">colorTokenMap</a></li><li><a href="global.html#colorVariantMap">colorVariantMap</a></li><li><a href="global.html#Composite">Composite</a></li><li><a href="global.html#effectTokenMap">effectTokenMap</a></li><li><a href="global.html#extractLayerStyles">extractLayerStyles</a></li><li><a href="global.html#getHexForLabel">getHexForLabel</a></li><li><a href="global.html#getPalette">getPalette</a></li><li><a href="global.html#getPaletteNames">getPaletteNames</a></li><li><a href="global.html#loadCompositionLayers">loadCompositionLayers</a></li><li><a href="global.html#parseStylablezFiles">parseStylablezFiles</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="Composite.html">Composite</a></li><li><a href="CompositionLayer.html">CompositionLayer</a></li><li><a href="FilenameParser.html">FilenameParser</a></li><li><a href="LayerTool.html">LayerTool</a></li><li><a href="PaletteTool.html">PaletteTool</a></li></ul><h3>Interfaces</h3><ul><li><a href="Color.html">Color</a></li><li><a href="CompositeProps.html">CompositeProps</a></li><li><a href="Composition.html">Composition</a></li><li><a href="Layer.html">Layer</a></li><li><a href="LayerProps.html">LayerProps</a></li><li><a href="LayerStyle.html">LayerStyle</a></li><li><a href="Palette.html">Palette</a></li><li><a href="PaletteList.html">PaletteList</a></li></ul><h3>Global</h3><ul><li><a href="global.html#blendModeMap">blendModeMap</a></li><li><a href="global.html#blendModeTokenMap">blendModeTokenMap</a></li><li><a href="global.html#booleanTokenMap">booleanTokenMap</a></li><li><a href="global.html#colorTokenMap">colorTokenMap</a></li><li><a href="global.html#colorVariantMap">colorVariantMap</a></li><li><a href="global.html#effectTokenMap">effectTokenMap</a></li></ul></div>
                 
             </nav>
         </div>
@@ -214,9 +214,9 @@
 
     
         <p class="tag-source">
-            <a href="functions_filenameParser.ts.html" class="button">View Source</a>
+            <a href="tools_FilenameParser.ts.html" class="button">View Source</a>
             <span>
-                <a href="functions_filenameParser.ts.html">functions/filenameParser.ts</a>, <a href="functions_filenameParser.ts.html#line56">line 56</a>
+                <a href="tools_FilenameParser.ts.html">tools/FilenameParser.ts</a>, <a href="tools_FilenameParser.ts.html#line184">line 184</a>
             </span>
         </p>
     
@@ -248,8 +248,8 @@
 
 <div class="description">
     The keys in this object can will be embedded in a filename to set look up a blend mode in the
-#blendModeMap which will be set on the layer for that image.  The allowable values that follow
-the characters are found in #blendModeMap
+blendModeMap which will be set on the layer for that image.  The allowable values that follow
+the characters are found in blendModeMap
 </div>
 
 
@@ -289,9 +289,9 @@ the characters are found in #blendModeMap
 
     
         <p class="tag-source">
-            <a href="functions_filenameParser.ts.html" class="button">View Source</a>
+            <a href="tools_FilenameParser.ts.html" class="button">View Source</a>
             <span>
-                <a href="functions_filenameParser.ts.html">functions/filenameParser.ts</a>, <a href="functions_filenameParser.ts.html#line23">line 23</a>
+                <a href="tools_FilenameParser.ts.html">tools/FilenameParser.ts</a>, <a href="tools_FilenameParser.ts.html#line151">line 151</a>
             </span>
         </p>
     
@@ -363,82 +363,9 @@ the corresponding style attribute on the layer image.
 
     
         <p class="tag-source">
-            <a href="functions_filenameParser.ts.html" class="button">View Source</a>
+            <a href="tools_FilenameParser.ts.html" class="button">View Source</a>
             <span>
-                <a href="functions_filenameParser.ts.html">functions/filenameParser.ts</a>, <a href="functions_filenameParser.ts.html#line31">line 31</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-</div>
-            
-                <div class="member">
-
-<h4 class="name" id="buildStylizableLayers">
-    <a class="href-link" href="#buildStylizableLayers">#</a>
-    
-        
-            <span class='tag'>constant</span>
-        
-    
-    <span class="code-name">
-        buildStylizableLayers
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    Call this method to convert a list of files to layers.
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="functions_layers.ts.html" class="button">View Source</a>
-            <span>
-                <a href="functions_layers.ts.html">functions/layers.ts</a>, <a href="functions_layers.ts.html#line33">line 33</a>
+                <a href="tools_FilenameParser.ts.html">tools/FilenameParser.ts</a>, <a href="tools_FilenameParser.ts.html#line159">line 159</a>
             </span>
         </p>
     
@@ -511,9 +438,9 @@ that corresponds to a primary, accent or secondary color.
 
     
         <p class="tag-source">
-            <a href="functions_filenameParser.ts.html" class="button">View Source</a>
+            <a href="tools_FilenameParser.ts.html" class="button">View Source</a>
             <span>
-                <a href="functions_filenameParser.ts.html">functions/filenameParser.ts</a>, <a href="functions_filenameParser.ts.html#line40">line 40</a>
+                <a href="tools_FilenameParser.ts.html">tools/FilenameParser.ts</a>, <a href="tools_FilenameParser.ts.html#line168">line 168</a>
             </span>
         </p>
     
@@ -585,82 +512,9 @@ in the palette
 
     
         <p class="tag-source">
-            <a href="functions_filenameParser.ts.html" class="button">View Source</a>
+            <a href="tools_FilenameParser.ts.html" class="button">View Source</a>
             <span>
-                <a href="functions_filenameParser.ts.html">functions/filenameParser.ts</a>, <a href="functions_filenameParser.ts.html#line47">line 47</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-</div>
-            
-                <div class="member">
-
-<h4 class="name" id="Composite">
-    <a class="href-link" href="#Composite">#</a>
-    
-        
-            <span class='tag'>constant</span>
-        
-    
-    <span class="code-name">
-        Composite
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    A simple wrapper around its child #CompositionLayer elements.
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="components_Composite.tsx.html" class="button">View Source</a>
-            <span>
-                <a href="components_Composite.tsx.html">components/Composite.tsx</a>, <a href="components_Composite.tsx.html#line8">line 8</a>
+                <a href="tools_FilenameParser.ts.html">tools/FilenameParser.ts</a>, <a href="tools_FilenameParser.ts.html#line175">line 175</a>
             </span>
         </p>
     
@@ -732,452 +586,9 @@ numeric value (1 - 100) for the corresponding style attribute on the layer image
 
     
         <p class="tag-source">
-            <a href="functions_filenameParser.ts.html" class="button">View Source</a>
+            <a href="tools_FilenameParser.ts.html" class="button">View Source</a>
             <span>
-                <a href="functions_filenameParser.ts.html">functions/filenameParser.ts</a>, <a href="functions_filenameParser.ts.html#line7">line 7</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-</div>
-            
-                <div class="member">
-
-<h4 class="name" id="extractLayerStyles">
-    <a class="href-link" href="#extractLayerStyles">#</a>
-    
-        
-            <span class='tag'>constant</span>
-        
-    
-    <span class="code-name">
-        extractLayerStyles
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    Givent the specified palette and layer this will create styles that can be directely
-applied to elements that take CSS styls.  The layer specs will be used ot map values out
-of the palette and create the styles.
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="functions_style.ts.html" class="button">View Source</a>
-            <span>
-                <a href="functions_style.ts.html">functions/style.ts</a>, <a href="functions_style.ts.html#line71">line 71</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-</div>
-            
-                <div class="member">
-
-<h4 class="name" id="getHexForLabel">
-    <a class="href-link" href="#getHexForLabel">#</a>
-    
-        
-            <span class='tag'>constant</span>
-        
-    
-    <span class="code-name">
-        getHexForLabel
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    For the specified label this will return the hex color value that is configued in
-the palette
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="functions_style.ts.html" class="button">View Source</a>
-            <span>
-                <a href="functions_style.ts.html">functions/style.ts</a>, <a href="functions_style.ts.html#line33">line 33</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-</div>
-            
-                <div class="member">
-
-<h4 class="name" id="getPalette">
-    <a class="href-link" href="#getPalette">#</a>
-    
-        
-            <span class='tag'>constant</span>
-        
-    
-    <span class="code-name">
-        getPalette
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    A simple utility method to find the palette with the specified name and return it
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="functions_style.ts.html" class="button">View Source</a>
-            <span>
-                <a href="functions_style.ts.html">functions/style.ts</a>, <a href="functions_style.ts.html#line13">line 13</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-</div>
-            
-                <div class="member">
-
-<h4 class="name" id="getPaletteNames">
-    <a class="href-link" href="#getPaletteNames">#</a>
-    
-        
-            <span class='tag'>constant</span>
-        
-    
-    <span class="code-name">
-        getPaletteNames
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    Extracts a list of names from the provided palette list
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="functions_style.ts.html" class="button">View Source</a>
-            <span>
-                <a href="functions_style.ts.html">functions/style.ts</a>, <a href="functions_style.ts.html#line6">line 6</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-</div>
-            
-                <div class="member">
-
-<h4 class="name" id="loadCompositionLayers">
-    <a class="href-link" href="#loadCompositionLayers">#</a>
-    
-        
-            <span class='tag'>constant</span>
-        
-    
-    <span class="code-name">
-        loadCompositionLayers
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    Given a sorted list of files, parse the filenames to create a layer for each one.
-Then compose those into a composition.
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="functions_layers.ts.html" class="button">View Source</a>
-            <span>
-                <a href="functions_layers.ts.html">functions/layers.ts</a>, <a href="functions_layers.ts.html#line47">line 47</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-</div>
-            
-                <div class="member">
-
-<h4 class="name" id="parseStylablezFiles">
-    <a class="href-link" href="#parseStylablezFiles">#</a>
-    
-        
-            <span class='tag'>constant</span>
-        
-    
-    <span class="code-name">
-        parseStylablezFiles
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    Given a list of filenames, this will extract tokens that are delimed by '_' characters.
-any tokens that contain a '-' will be ignored.
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="functions_filenameParser.ts.html" class="button">View Source</a>
-            <span>
-                <a href="functions_filenameParser.ts.html">functions/filenameParser.ts</a>, <a href="functions_filenameParser.ts.html#line82">line 82</a>
+                <a href="tools_FilenameParser.ts.html">tools/FilenameParser.ts</a>, <a href="tools_FilenameParser.ts.html#line135">line 135</a>
             </span>
         </p>
     

@@ -68,7 +68,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="CompositionLayer.html">CompositionLayer</a></li></ul><h3>Interfaces</h3><ul><li><a href="CompositeProps.html">CompositeProps</a></li><li><a href="Composition.html">Composition</a></li><li><a href="Layer.html">Layer</a></li><li><a href="LayerProps.html">LayerProps</a></li><li><a href="LayerStyle.html">LayerStyle</a></li><li><a href="PaletteList.html">PaletteList</a></li></ul><h3>Global</h3><ul><li><a href="global.html#blendModeMap">blendModeMap</a></li><li><a href="global.html#blendModeTokenMap">blendModeTokenMap</a></li><li><a href="global.html#booleanTokenMap">booleanTokenMap</a></li><li><a href="global.html#buildStylizableLayers">buildStylizableLayers</a></li><li><a href="global.html#colorTokenMap">colorTokenMap</a></li><li><a href="global.html#colorVariantMap">colorVariantMap</a></li><li><a href="global.html#Composite">Composite</a></li><li><a href="global.html#effectTokenMap">effectTokenMap</a></li><li><a href="global.html#extractLayerStyles">extractLayerStyles</a></li><li><a href="global.html#getHexForLabel">getHexForLabel</a></li><li><a href="global.html#getPalette">getPalette</a></li><li><a href="global.html#getPaletteNames">getPaletteNames</a></li><li><a href="global.html#loadCompositionLayers">loadCompositionLayers</a></li><li><a href="global.html#parseStylablezFiles">parseStylablezFiles</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="Composite.html">Composite</a></li><li><a href="CompositionLayer.html">CompositionLayer</a></li><li><a href="FilenameParser.html">FilenameParser</a></li><li><a href="LayerTool.html">LayerTool</a></li><li><a href="PaletteTool.html">PaletteTool</a></li></ul><h3>Interfaces</h3><ul><li><a href="Color.html">Color</a></li><li><a href="CompositeProps.html">CompositeProps</a></li><li><a href="Composition.html">Composition</a></li><li><a href="Layer.html">Layer</a></li><li><a href="LayerProps.html">LayerProps</a></li><li><a href="LayerStyle.html">LayerStyle</a></li><li><a href="Palette.html">Palette</a></li><li><a href="PaletteList.html">PaletteList</a></li></ul><h3>Global</h3><ul><li><a href="global.html#blendModeMap">blendModeMap</a></li><li><a href="global.html#blendModeTokenMap">blendModeTokenMap</a></li><li><a href="global.html#booleanTokenMap">booleanTokenMap</a></li><li><a href="global.html#colorTokenMap">colorTokenMap</a></li><li><a href="global.html#colorVariantMap">colorVariantMap</a></li><li><a href="global.html#effectTokenMap">effectTokenMap</a></li></ul></div>
                 
             </nav>
         </div>
@@ -91,11 +91,11 @@ import {Layer, Palette} from "../model/types";
 import {CompositionLayer} from "./CompositionLayer";
 
 /**
- * Properties provided to a Composite element most important of which are the
+ * Properties provided to a visual Composite element. The most important properties are the
  * layers and the palette.  layerWidht and layerHeight are provided to the udnerlying
- * #CompositionLayer to keep them properly aligned within the composition.  backgroundColor
- * is global to the composit itself and replaces the need style the background, relying instead,
- * on the palette control mechanism.  Each layer is used to create and style a #CompositionLayer
+ * CompositionLayer to keep them properly aligned within the composition.  backgroundColor
+ * is global to the composite itself and replaces the need style the background, relying instead,
+ * on the palette control mechanism.  Each layer is used to create and style a CompositionLayer
  */
 interface CompositeProps {
     backgroundColor: string;
@@ -106,8 +106,9 @@ interface CompositeProps {
 }
 
 /**
- * A simple wrapper around its child #CompositionLayer elements.
- * @param props @see #CompositProps
+ * A React JSX element that wraps child CompositionLayer elements.
+ * @param props CompositeProps
+ * @constructor
  */
 export const Composite = (props: CompositeProps) => {
     const {backgroundColor, layers, layerWidth, layerHeight, palette} = props

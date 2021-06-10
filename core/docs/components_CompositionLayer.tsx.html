@@ -68,7 +68,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="CompositionLayer.html">CompositionLayer</a></li></ul><h3>Interfaces</h3><ul><li><a href="CompositeProps.html">CompositeProps</a></li><li><a href="Composition.html">Composition</a></li><li><a href="Layer.html">Layer</a></li><li><a href="LayerProps.html">LayerProps</a></li><li><a href="LayerStyle.html">LayerStyle</a></li><li><a href="PaletteList.html">PaletteList</a></li></ul><h3>Global</h3><ul><li><a href="global.html#blendModeMap">blendModeMap</a></li><li><a href="global.html#blendModeTokenMap">blendModeTokenMap</a></li><li><a href="global.html#booleanTokenMap">booleanTokenMap</a></li><li><a href="global.html#buildStylizableLayers">buildStylizableLayers</a></li><li><a href="global.html#colorTokenMap">colorTokenMap</a></li><li><a href="global.html#colorVariantMap">colorVariantMap</a></li><li><a href="global.html#Composite">Composite</a></li><li><a href="global.html#effectTokenMap">effectTokenMap</a></li><li><a href="global.html#extractLayerStyles">extractLayerStyles</a></li><li><a href="global.html#getHexForLabel">getHexForLabel</a></li><li><a href="global.html#getPalette">getPalette</a></li><li><a href="global.html#getPaletteNames">getPaletteNames</a></li><li><a href="global.html#loadCompositionLayers">loadCompositionLayers</a></li><li><a href="global.html#parseStylablezFiles">parseStylablezFiles</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="Composite.html">Composite</a></li><li><a href="CompositionLayer.html">CompositionLayer</a></li><li><a href="FilenameParser.html">FilenameParser</a></li><li><a href="LayerTool.html">LayerTool</a></li><li><a href="PaletteTool.html">PaletteTool</a></li></ul><h3>Interfaces</h3><ul><li><a href="Color.html">Color</a></li><li><a href="CompositeProps.html">CompositeProps</a></li><li><a href="Composition.html">Composition</a></li><li><a href="Layer.html">Layer</a></li><li><a href="LayerProps.html">LayerProps</a></li><li><a href="LayerStyle.html">LayerStyle</a></li><li><a href="Palette.html">Palette</a></li><li><a href="PaletteList.html">PaletteList</a></li></ul><h3>Global</h3><ul><li><a href="global.html#blendModeMap">blendModeMap</a></li><li><a href="global.html#blendModeTokenMap">blendModeTokenMap</a></li><li><a href="global.html#booleanTokenMap">booleanTokenMap</a></li><li><a href="global.html#colorTokenMap">colorTokenMap</a></li><li><a href="global.html#colorVariantMap">colorVariantMap</a></li><li><a href="global.html#effectTokenMap">effectTokenMap</a></li></ul></div>
                 
             </nav>
         </div>
@@ -87,10 +87,10 @@
         <article>
             <pre class="prettyprint source linenums"><code>import React, {useMemo} from "react";
 import {Layer, Palette} from "../model/types";
-import {extractLayerStyles} from "../functions/style";
+import {LayerTool} from "../tools/LayerTool";
 
 /**
- * Properties passed in with the #CompositeLayer element attribuutes.  The most important
+ * Properties passed in with the CompositeLayer visual element attributes.  The most important
  * attributes are layer and palette both of which can be controlled with React using controlled
  * components.  See the example in this repository to see how this is done.
  */
@@ -103,9 +103,9 @@ interface LayerProps {
 }
 
 /**
- * A CompositionLayer is an element whose styles are applied directly to the element
- * based on the values extracted from the @Layer using the #extractLayerStyles method.:w
- * @param props @see #LayerProps
+ * A React JSX element whose styles are applied directly to the element
+ * based on the values extracted from the @Layer using the extractLayerStyles method.
+ * @param props LayerProps
  * @constructor
  */
 export const CompositionLayer = (props: LayerProps) => {
@@ -113,7 +113,7 @@ export const CompositionLayer = (props: LayerProps) => {
 
     return useMemo(
     () => {
-        const layerStyle = extractLayerStyles(palette, layer, width, height);
+        const layerStyle = new LayerTool().extractLayerStyles(palette, layer, width, height);
 
         return &lt;div style={{
             flex: '1 1 auto',
