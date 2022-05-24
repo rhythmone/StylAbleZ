@@ -6,7 +6,7 @@ import {Paper, RootRef} from "@material-ui/core";
 import {palettes} from "./Palettes";
 import {EditLayersPanel} from "./editor/EditLayersPanel";
 import splash from '../img/splash.png'
-import {Composite, Layer, LayerTool, Palette, PaletteTool} from "@styleablez/core";
+import {Composite, Layer, LayerTool, Palette, PaletteTool} from "@stylablez/core";
 
 export interface WorkProps {
 }

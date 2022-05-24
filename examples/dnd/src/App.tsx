@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {Work} from "./styleablez/Work";
+import {Work} from "./stylablez/Work";
 
 const App = () => {
 

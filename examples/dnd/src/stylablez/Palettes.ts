@@ -1,4 +1,4 @@
-import { PaletteList } from '@styleablez/core'
+import { PaletteList } from '@stylablez/core'
 
 export const palettes: PaletteList = {
     "palettes": [

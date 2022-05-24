@@ -1,6 +1,6 @@
-# StyleAbleZ Image Stacking and Styling Library
+# StylAbleZ Image Stacking and Styling Library
 
-StyleAbleZ is a library for processing a stack of images that can flex in both color and style according to the digital product they are embedded in.
+StylAbleZ is a library for processing a stack of images that can flex in both color and style according to the digital product they are embedded in.
 
 # Demo
 [Drag some files into this Demo](https://rhythmone.github.io/StylAbleZ/examples/dnd/build/index.html)

@@ -1566,7 +1566,7 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@styleablez/core@file:../../core/dist":
+"@stylablez/core@file:../../core/dist":
   version "0.0.0"
 
 "@surma/rollup-plugin-off-main-thread@^1.1.1":

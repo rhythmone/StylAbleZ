@@ -1,4 +1,4 @@
-import {StyleAbleZMap} from "../model/types";
+import {StylAbleZMap} from "../model/types";
 
 const tokenDelimiter = '_';
 
@@ -22,7 +22,7 @@ export class FilenameParser {
      * @param lenientFilenames set this to true to prevent errors from being thrown when files
      * may be provided with names that could not be parsed
      */
-    public parseStylablezFiles = (lenientFilenames: boolean = false): StyleAbleZMap[] => {
+    public parseStylablezFiles = (lenientFilenames: boolean = false): StylAbleZMap[] => {
         const stylables = this.filenames.map((filename) => this.parseStylablezFilename(filename, lenientFilenames))
         stylables.sort((s1, s2) => {
             if (s1.layerOrder > s2.layerOrder) {
@@ -51,7 +51,7 @@ export class FilenameParser {
         }
         const stripped = strippedOfExtension.replace(/\s+/g, '')
         const tokens = stripped.toUpperCase().split(tokenDelimiter)
-        const styleMap: StyleAbleZMap = {}
+        const styleMap: StylAbleZMap = {}
         const cleanTokens = tokens.filter(
             token => token.indexOf('-') < 0
         )
@@ -97,7 +97,7 @@ export class FilenameParser {
     }
 
 
-    public addEffectValue = (styleMap: StyleAbleZMap, fileName: string, token: string, tokenKey: string, tokenValue: string) => {
+    public addEffectValue = (styleMap: StylAbleZMap, fileName: string, token: string, tokenKey: string, tokenValue: string) => {
         if (isNaN(tokenValue as any)) {
             throw Error(`The part of the filename: '${fileName}' containing the code: '${token}'
                     is followed by a value: '${tokenValue}' that can't be converted to a number.
@@ -106,7 +106,7 @@ export class FilenameParser {
         styleMap[effectTokenMap[tokenKey]] =  Number.parseInt(tokenValue, 10)
     }
 
-    public addBlendMode = (styleMap: StyleAbleZMap, fileName: string, token: string, tokenKey: string, tokenValue: string) => {
+    public addBlendMode = (styleMap: StylAbleZMap, fileName: string, token: string, tokenKey: string, tokenValue: string) => {
         if (blendModeMap[tokenValue] !== undefined) {
             styleMap[blendModeTokenMap[tokenKey]] = blendModeMap[tokenValue]
         } else {
@@ -117,7 +117,7 @@ export class FilenameParser {
         }
     }
 
-    public addBooleanValue = (styleMap: StyleAbleZMap, fileName: string, token: string, tokenKey: string, tokenValue: string) => {
+    public addBooleanValue = (styleMap: StylAbleZMap, fileName: string, token: string, tokenKey: string, tokenValue: string) => {
         if (tokenValue !== 'T' && tokenValue !== 'F' && tokenValue !== '0' && tokenValue !== '1') {
             throw Error(`The part of the filename: '${fileName}' containing the code: '${token}'
                     is followed by a code that can't be converted to true of false.  It's '${tokenValue}'. 
@@ -127,7 +127,7 @@ export class FilenameParser {
         styleMap[booleanTokenMap[tokenKey]] = (tokenValue === 'T' || tokenValue === '1')
     }
 
-    public addColorVariant = (styleMap: StyleAbleZMap, fileName: string, token: string, tokenKey: string, tokenValue: string) => {
+    public addColorVariant = (styleMap: StylAbleZMap, fileName: string, token: string, tokenKey: string, tokenValue: string) => {
         if (tokenValue === 'A' || tokenValue === 'P' || tokenValue === 'S') {
             styleMap[colorTokenMap[tokenKey]] = colorVariantMap[tokenValue]
         } else {
@@ -219,7 +219,7 @@ const styleCode = /(^[A-Z|a-z]{2})(.*)/
 
 interface Stylable {
     layerOrder: number,
-    styleMap: StyleAbleZMap
+    styleMap: StylAbleZMap
 }
 
 function throwFullError(fileName: string, token: string) {

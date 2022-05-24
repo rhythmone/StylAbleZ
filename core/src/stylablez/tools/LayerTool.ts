@@ -1,4 +1,4 @@
-import {Composition, Gallery, Layer, LayerStyle, Palette, StyleAbleZMap} from "../model/types";
+import {Composition, Gallery, Layer, LayerStyle, Palette, StylAbleZMap} from "../model/types";
 import {FilenameParser} from "./FilenameParser";
 import {PaletteTool} from "./PaletteTool";
 
@@ -18,7 +18,7 @@ export class LayerTool {
     public buildStylizableLayers = (files: File[], lenientFilenames: boolean = false): Layer[] => {
         const filenames: string[] = files.map(file => file.name)
 
-        const styleMaps: StyleAbleZMap[] = new FilenameParser(filenames).parseStylablezFiles(lenientFilenames)
+        const styleMaps: StylAbleZMap[] = new FilenameParser(filenames).parseStylablezFiles(lenientFilenames)
         return styleMaps.map((stylMap, idx) => ({
             sourceId: files[idx].name,
             styleMap: stylMap,
@@ -48,7 +48,7 @@ export class LayerTool {
      */
     public extractLayerStyles = (palette: Palette, layer: Layer,  width: number, height: number): LayerStyle => {
         const imgDataUrl = layer.imageDataUrl
-        const stylizableMap: StyleAbleZMap = layer.styleMap
+        const stylizableMap: StylAbleZMap = layer.styleMap
 
         let layerStyle: LayerStyle = {
             // Add width and height when rendering HTML, based on parent element
