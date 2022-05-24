@@ -37,11 +37,11 @@ export interface LayerStyle {
  */
 export interface Layer {
     sourceId: string;
-    styleMap: StyleAbleZMap;
+    styleMap: StylAbleZMap;
     imageDataUrl?: string;
 }
 
-export interface StyleAbleZMap {
+export interface StylAbleZMap {
     [styleName: string]: string | number | boolean | undefined;
     backgroundColor?: string;
 }
